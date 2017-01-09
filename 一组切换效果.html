@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一组切换效果</title>
+    <style>
+        *{margin:0; padding:0; list-style:none; font-size:12px; color:#fff;}
+        .wrap{width:980px; height:500px; margin:100px auto 0;}
+        .wrap .btn{width:100%; height:40px; line-height:40px; text-align:center; color:#000;}
+        .wrap .btn>input{color:#000;}
+        .wrap .container{width:100%; height:460px; overflow:hidden; box-shadow:0 0 5px #000;}
+        .wrap .container .img{position:relative; float:left; width:50%; height:460px; box-shadow:0 0 5px #000;}
+        .wrap .container .img .num{position:absolute; top:0; left:0; display:block; width:100%; height:30px; line-height:30px; text-align:center;background:rgba(0,0,0,.6);}
+        .wrap .container .img .text{position:absolute; bottom:0; left:0; display:block; width:100%; height:30px; line-height:30px; text-align:center;background:rgba(0,0,0,.6);}
+        .wrap .container .img img{width:100%; height:100%;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="btn">
+        <input type="button" value="下一组" id="next">
+        <input type="button" value="上一组" id="prev">
+    </div>
+    <div class="container">
+        <div class="img">
+            <span class="num" id="span1">页码正在加载中。。。</span>
+            <img src="" alt="" id="img1">
+            <p class="text" id="p1">图片信息正在加载中</p>
+        </div>
+        <div class="img">
+            <span class="num" id="span2">页码正在加载中。。。</span>
+            <img src="" alt="" id="img2">
+            <p class="text" id="p2">图片信息正在加载中</p>
+        </div>
+    </div>
+</div>
+<script>
+    var oNext = document.getElementById("next");
+    var oPrev = document.getElementById("prev");
+    var oCon = document.getElementsByClassName("container")[0];
+    var oImg1 = document.getElementById("img1");
+    var oImg2 = document.getElementById("img2");
+    var oP1 = document.getElementById("p1");
+    var oP2 = document.getElementById("p2");
+    var oSpan1 = document.getElementById("span1");
+    var oSpan2 = document.getElementById("span2");
+    var num1 = 0,num2 = 0;
+
+    var arrImg1 = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+    var arrImg2 = ["img/cake1.jpg","img/cake2.jpg","img/cake3.jpg","img/cake4.jpg","img/cake5.jpg"];
+    var arrImg1Desc = ["图片一","图片二","图片三","图片四"];
+    var arrImg2Desc = ["蛋糕一","蛋糕二","蛋糕三","蛋糕四","蛋糕五"];
+
+    //初始化
+    function init( oSpan , num , arrImg , oP , arrImgDesc , oImg  ){
+        oSpan.innerHTML = num+1+"/"+ arrImg.length;
+        oP.innerHTML = arrImgDesc[num];
+        oImg.src = arrImg[num];
+    }
+    init( oSpan1 , num1 , arrImg1 , oP1 , arrImg1Desc , oImg1  );
+    init( oSpan2 , num2 , arrImg2 , oP2 , arrImg2Desc , oImg2 );
+
+    //上一组按钮
+    oPrev.onclick = function(){
+        num1 --;
+        num2 --;
+        if(num1<0){num1 = 0;}
+        if(num2<0){num2 = 0;}
+        init( oSpan1 , num1 , arrImg1 , oP1 , arrImg1Desc , oImg1  );
+        init( oSpan2 , num2 , arrImg2 , oP2 , arrImg2Desc , oImg2 );
+    };
+    //下一组按钮
+    oNext.onclick = function(){
+        num1 ++;
+        num2 ++;
+        if(num1>arrImg1.length-1){num1 = arrImg1.length-1;}
+        if(num2>arrImg2.length-1){num2 = arrImg2.length-1;}
+        init( oSpan1 , num1 , arrImg1 , oP1 , arrImg1Desc , oImg1  );
+        init( oSpan2 , num2 , arrImg2 , oP2 , arrImg2Desc , oImg2 );
+    };
+
+    //图片组一点击
+    oImg1.onclick = function(){
+        num1 ++;
+        if(num1>arrImg1.length-1){num1 = arrImg1.length-1;}
+        init( oSpan1 , num1 , arrImg1 , oP1 , arrImg1Desc , oImg1  );
+        init( oSpan2 , num2 , arrImg2 , oP2 , arrImg2Desc , oImg2 );
+    };
+    //图片组二点击
+    oImg2.onclick = function(){
+        num2 ++;
+        if(num2>arrImg2.length-1){num2 = arrImg2.length-1;}
+        init( oSpan1 , num1 , arrImg1 , oP1 , arrImg1Desc , oImg1  );
+        init( oSpan2 , num2 , arrImg2 , oP2 , arrImg2Desc , oImg2 );
+    }
+</script>
+</body>
+</html>

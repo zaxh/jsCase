@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>带缩略图的切换</title>
+    <style>
+        *{margin:0; padding:0; list-style:none;}
+        body{ background:#00aa00;}
+        .wrap{ width:100%; height: 700px;}
+        .wrap .img-wrap{position:relative; width:500px; height:400px; margin: 80px auto 0; border: 1px groove darkorchid;}
+        .wrap .img-wrap img{width:100%; height:100%;}
+        .wrap .img-wrap span{position:absolute; top:0; bottom:0; margin:auto; display:block; width:50px; height:50px; background:rgba(0,0,0,.6); font-size:24px; font-weight:bold; color:rgba(255,255,255,.6); line-height:50px; text-align: center; cursor:pointer;}
+        .wrap .img-wrap span:hover{color:rgba(255,255,255,.9); background:rgba(0,0,0,.9);}
+        .wrap .img-wrap span.next{right:10px;}
+        .wrap .img-wrap span.prev{left:10px;}
+        .wrap .btn{width:150px; height:40px; margin:150px auto 0;}
+        .wrap .btn>li{position:relative; float:left; width: 15px; height:15px; border-radius:50%; border:1px solid #ccc; margin:5px; cursor:pointer;}
+        .wrap .btn>li .thumbnail{position:absolute; top:-120px; left:-43px; width:100px; height:100px; display:none;}
+        .wrap .btn>li .thumbnail:after{position:absolute; top:100px; left:0; right:0; margin:0 auto; content:"";  width:0; height:0; border:15px solid transparent; border-top-color:#ccc; }
+        .wrap .btn>li .thumbnail>img{width:100%; height:100%; border-radius:5px;}
+        .active{background:#ccc;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="img-wrap">
+            <img src="" alt="" id="img">
+            <span class="tab prev" id="prev">&lt;</span>
+            <span class="tab next" id="next">&gt;</span>
+        </div>
+        <ul class="btn">
+            <li class="active">
+                <div class="thumbnail"><img src="img/cake1.jpg" alt=""></div>
+            </li>
+            <li>
+                <div class="thumbnail"><img src="img/cake2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div class="thumbnail"><img src="img/cake3.jpg" alt=""></div>
+            </li>
+            <li>
+                <div class="thumbnail"><img src="img/cake4.jpg" alt=""></div>
+            </li>
+            <li>
+                <div class="thumbnail"><img src="img/cake5.jpg" alt=""></div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var oImg = document.getElementById("img");
+        var aLi = document.getElementsByTagName("li");
+        var oNext = document.getElementById("next");
+        var oPrev = document.getElementById("prev");
+        var oThumbnail = null;
+        var arrThumbnail = [];
+        var num = 0;
+
+        //初始化
+        function init(){
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className = "";
+            }
+            aLi[num].className = "active";
+            oImg.src = "img/cake" + parseInt(num+1) + ".jpg";
+        }
+        init();
+
+        for(var i=0;i<aLi.length;i++){
+            oThumbnail = aLi[i].getElementsByClassName("thumbnail");
+            for(var j=0;j<oThumbnail.length;j++){
+                arrThumbnail.push( oThumbnail[j] );
+            }
+        }
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function(){
+                for(var j=0;j<arrThumbnail.length;j++){
+                    arrThumbnail[j].style.display = "none";
+                }
+                arrThumbnail[this.index].style.display = "block";
+            };
+            aLi[i].onmouseout = function(){
+                arrThumbnail[this.index].style.display = "none";
+            };
+            aLi[i].onclick = function(){
+                num = this.index;
+                init();
+            }
+        }
+        oNext.onclick = function(){
+            num ++;
+            if(num>aLi.length-1){num=0;}
+            init();
+
+        };
+        oPrev.onclick = function(){
+            num --;
+            if(num<0){num=aLi.length-1;}
+            init();
+        };
+    </script>
+</body>
+</html>

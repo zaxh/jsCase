@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮生成li</title>
+    <style>
+        .li-wrap{
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+        li{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #ccc;
+            list-style: none;
+            text-align: center;
+            line-height: 50px;
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <input id="ten" type="button" value="生成10个一行">
+    <input id="stair" type="button" value="生成阶梯型">
+    <input id="v1" type="button" value="生成V字型">
+    <input id="v2" type="button" value="生成倒V字型">
+    <input id="v3" type="button" value="生成>字型">
+    <input id="v4" type="button" value="生成<字型">
+    <input id="num" type="text">
+    <ul class="li-wrap">
+
+    </ul>
+    <script>
+        var ten = document.getElementById("ten");
+        var stair = document.getElementById("stair");
+        var v1 = document.getElementById("v1");
+        var v2 = document.getElementById("v2");
+        var v3 = document.getElementById("v3");
+        var v4 = document.getElementById("v4");
+        var num = document.getElementById("num");
+        var oUl = document.getElementsByTagName("ul")[0];
+
+        ten.onclick = function(){
+            oUl.innerHTML = "";
+            for(var i=0;i<num.value;i++){
+                oUl.innerHTML += "<li style='top:"+ parseInt( i/10 )*50 +"px; left:"+ parseInt( i%10 )*50 +"px'>"+ parseInt(i+1) +"</li>";
+            }
+        };
+        stair.onclick = function(){
+            oUl.innerHTML = "";
+            for(var i=0;i<num.value;i++){
+                oUl.innerHTML += "<li style='top:"+ i*50 +"px; left:"+ i*50 +"px'>"+ parseInt(i+1) +"</li>";
+            }
+        };
+        //正V
+        v1.onclick = function(){
+            oUl.innerHTML = "";
+            for(var i=0;i<num.value;i++){
+                var half = parseInt( num.value/2 );
+                if(i<half){
+                    oUl.innerHTML += "<li style='top:"+ i*50 +"px; left:"+ i*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }else{
+                    oUl.innerHTML += "<li style='top:"+ (num.value-1-i)*50 +"px; left:"+ i*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }
+            }
+        };
+        //倒V
+        v2.onclick = function(){
+            oUl.innerHTML = "";
+            for(var i=0;i<num.value;i++){
+                var half = parseInt( num.value/2 );
+                if(i<half){
+                    oUl.innerHTML += "<li style='top:"+ parseInt( num.value-1 -i)*50 +"px; left:"+ i*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }else{
+                    oUl.innerHTML += "<li style='top:"+ i*50 +"px; left:"+ i*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }
+            }
+        };
+        //>
+        v3.onclick = function(){
+            oUl.innerHTML = "";
+            for(var i=0;i<num.value;i++){
+                var half = parseInt( num.value/2 );
+                if(i<half){
+                    oUl.innerHTML += "<li style='top:"+ i*50 +"px; left:"+ i*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }else{
+                    oUl.innerHTML += "<li style='top:"+ i*50 +"px; left:"+ parseInt( num.value-1 -i)*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }
+            }
+        };
+        //<
+        v4.onclick = function(){
+            oUl.innerHTML = "";
+            for(var i=0;i<num.value;i++){
+                var half = parseInt( num.value/2 );
+                if(i<half){
+                    oUl.innerHTML += "<li style='top:"+ i*50 +"px; left:"+ parseInt( num.value-1 -i)*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }else{
+                    oUl.innerHTML += "<li style='top:"+ i*50 +"px; left:"+ i*50 +"px'>"+ parseInt(i+1) +"</li>";
+                }
+            }
+        };
+    </script>
+</body>
+</html>

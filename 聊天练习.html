@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天练习</title>
+    <style>
+        #wrap{
+            width: 400px;
+            height: 500px;
+            margin: 20px auto;
+            border: 10px solid #00a9e2;
+            border-radius: 5px;
+        }
+        #wrap .message{
+            width: 100%;
+            height:450px;
+            overflow-y: auto;
+            background: #ccc;
+        }
+        #wrap .send-wrap{
+            width: 100%;
+            height: 49px;
+            line-height: 50px;
+            border-top: 1px solid #3d3d3d;
+        }
+        #head{
+            width: 40px;
+            height: 40px;
+        }
+        #msg{
+            width: 250px;
+            height: 20px;
+            line-height: 20px;
+        }
+        #send{
+            width: 50px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+        }
+        #wrap .message .chat{
+            width: 100%;
+            height:40px;
+            line-height: 40px;
+            overflow: hidden;
+            border-radius: 5px;
+            margin: 10px auto;
+        }
+        #wrap .message .chat img{
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+        }
+        #wrap .message .chat .word{
+            display: inline-block;
+            padding: 0 5px;
+            margin:0 10px;
+            color: #000;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="message" id="mes_wrap">
+
+        </div>
+        <div class="send-wrap">
+            <img src="img/1.jpg" alt="" id="head">
+            <input type="text" id="msg" />
+            <input type="button" value="发送" id="send"/>
+        </div>
+    </div>
+    <script>
+        var oBtn = document.getElementById("send");
+        var oMsg = document.getElementById("msg");
+        var oHead = document.getElementById("head");
+        var oMesWrap = document.getElementById("mes_wrap");
+        var img = ["img/1.jpg","img/2.jpg"];
+        var onOff = true;
+
+        oHead.onclick = function(){
+            if( onOff ){
+                oHead.src = img[1];
+                onOff = false;
+            }else{
+                oHead.src = img[0];
+                onOff = true;
+            }
+        };
+
+        oBtn.onclick = function(){
+            if(oMsg.value == ''){alert("输入信息不能为空！！");}
+            if( onOff ){
+                oMesWrap.innerHTML = '<div class="chat" style="float:right;"><img src="'+ oHead.src +'" alt="" class="tx" style="float:right;"><span class="word" style="background: #00aa00; float:right;">'+ oMsg.value +'</span></div>'+oMesWrap.innerHTML;
+                oMsg.value = '';
+            }else{
+                oMesWrap.innerHTML = '<div class="chat" style="float:left;"><img src="'+ oHead.src +'" alt="" class="tx" style="float:left;"><span class="word"  style="background: #00a9e2; float:left;">'+ oMsg.value +'</span></div>'+oMesWrap.innerHTML;
+                oMsg.value = '';
+            }
+        };
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+    <style>
+        *{margin:0; padding:0;}
+        .wrap{position:relative; width:500px; height:400px; margin:100px auto 0;}
+        .wrap .slider-list{position:absolute; top:0; left:-500px;/* width:3500px;*/ height:400px;}
+        .wrap .slider-list-item{float:left; list-style:none; width:500px; height:400px;}
+        .wrap .slider-list-item>a{display:inline-block; width:100%; height:100%;}
+        .wrap .slider-list-item>a>img{width:100%; height:100%;}
+        .wrap .btn-list{position:absolute; bottom:25px; left:0; right:0; margin:0 auto; width:210px; height:15px;}
+        .wrap .btn-list-item{float:left; list-style:none; width:15px; height:15px; border:1px solid #ccc; border-radius:50%; margin:0 10px; cursor:pointer;}
+        .active{background:#fff;}
+        .wrap span{position:absolute; top:0; bottom:0; margin:auto; width:30px; height:30px; font-size:24px; font-weight:bold; color:rgba(255,255,255,.6); background:rgba(0,0,0,.6); line-height:30px; text-align:center; cursor:pointer;}
+        .wrap span:hover{color:rgba(255,255,255,.9); background:rgba(0,0,0,.9);}
+        .wrap span.prev{left:0;}
+        .wrap span.next{right:0;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="slider-list">
+        <li class="slider-list-item"><a href="javascript:;"><img src="img/cake5.jpg" alt=""></a></li>
+        <li class="slider-list-item"><a href="javascript:;"><img src="img/cake1.jpg" alt=""></a></li>
+        <li class="slider-list-item"><a href="javascript:;"><img src="img/cake2.jpg" alt=""></a></li>
+        <li class="slider-list-item"><a href="javascript:;"><img src="img/cake3.jpg" alt=""></a></li>
+        <li class="slider-list-item"><a href="javascript:;"><img src="img/cake4.jpg" alt=""></a></li>
+        <li class="slider-list-item"><a href="javascript:;"><img src="img/cake5.jpg" alt=""></a></li>
+        <li class="slider-list-item"><a href="javascript:;"><img src="img/cake1.jpg" alt=""></a></li>
+    </ul>
+    <ul class="btn-list">
+        <li class="btn-list-item active"></li>
+        <li class="btn-list-item"></li>
+        <li class="btn-list-item"></li>
+        <li class="btn-list-item"></li>
+        <li class="btn-list-item"></li>
+    </ul>
+    <span class="prev">&lt;</span><span class="next">&gt;</span>
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(function(){
+        var $sliderImgLen = $(".slider-list-item").length;
+        var $sliderLiWid = $(".slider-list-item").width();
+        var wid = $sliderLiWid * $sliderImgLen;
+        var n = 0;
+        var timer = null;
+
+        init();
+        function init(){
+            $(".slider-list").width( wid );
+        };
+
+
+        function auto(){
+            n++;
+            if(n==$sliderImgLen){ n=1; } console.log( n );
+            $(".slider-list").animate({"left" : -$sliderLiWid*n },1000);
+        }
+
+        timer = setInterval( auto , 3000 );
+
+
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标滑过出现浮层</title>
+    <style>
+        .list{
+            width: 500px;
+            height: 500px;
+            margin: 100px auto 0;
+            border: 1px solid #ccc;
+        }
+        .item{
+            position: relative;
+            float: left;
+            list-style: none;
+            width:100px;
+            height: 100px;
+            background: url("img/1.jpg") no-repeat;
+            background-size: 100% 100%;
+            margin: 10px;
+            cursor: pointer;
+        }
+        img{
+            position: absolute;
+            left: 0;
+            top: -120px;
+            width: 100px;
+            height: 100px;
+
+        }
+    </style>
+</head>
+<body>
+<ul class="list">
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+</ul>
+<script>
+    var oLi = document.getElementsByTagName("li");
+    for(var i=0;i<oLi.length;i++){
+        oLi[i].onmouseenter = function(){
+            var img = document.createElement("img");
+            img.src = "img/2.jpg";
+            img.className = "img";
+            this.appendChild( img );
+            this.onmouseout = function(){
+                 this.removeChild( img );
+            }
+        };
+
+    }
+</script>
+</body>
+</html>

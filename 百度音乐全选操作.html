@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度音乐全选操作</title>
+    <style>
+        *{margin:0; padding:0;}
+        .wrap{width:960px; margin:100px auto; border:1px solid #ccc;}
+        .wrap ul li{list-style:none; width:100%; height:30px; line-height:30px; font-size:12px; border-bottom:1px solid #ccc;}
+        .wrap ul li span{display:inline-block;}
+        .active{background:gray;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <ul>
+            <li><input class="checkbox" type="checkbox"><span>独角戏</span></li>
+            <li><input class="checkbox" type="checkbox"><span>小情歌</span></li>
+            <li><input class="checkbox" type="checkbox"><span>丫头</span></li>
+            <li><input class="checkbox" type="checkbox"><span>年轮</span></li>
+            <li><input class="checkbox" type="checkbox"><span>蝴蝶</span></li>
+            <li><input class="checkbox" type="checkbox"><span>客官不可以</span></li>
+            <li><input id="checkAll" type="checkbox">全选</li>
+        </ul>
+    </div>
+    <script>
+        var checkAll = document.getElementById("checkAll");
+        var oLi = document.getElementsByTagName("li");
+        var oCheckbox = document.getElementsByClassName("checkbox");
+        var n=0;
+
+        for(var i=0;i<oCheckbox.length;i++){
+            oLi[i].index = i;
+            oCheckbox[i].index = i;
+            oLi[i].onmouseenter = function(){
+                this.className = "active";
+            };
+            oLi[i].onmouseleave = function(){
+                if(oCheckbox[this.index].checked == true){
+                    oLi[this.index].className = "active";
+                }else if(oCheckbox[this.index].checked == false){
+                    oLi[this.index].className = "";
+                }
+            };
+            oCheckbox[i].onclick = function(){
+                if(oCheckbox[this.index].checked == true){
+                    n++;
+                    if(n>oCheckbox.length){n=oCheckbox.length;}
+                }else {
+                    n--;
+                    if(n<0){n=0;}
+                }
+                checkAll.checked = (n == oCheckbox.length) ? true : false;
+            }
+        }
+        checkAll.onclick = function(){
+            if(checkAll.checked==true){
+                for(var i=0;i<oCheckbox.length;i++){
+                    oCheckbox[i].checked = true;
+                    oLi[i].className = "active";
+                }
+            }else{
+                for(var i=0;i<oCheckbox.length;i++){
+                    oCheckbox[i].checked = false;
+                    oLi[i].className = "";
+                }
+            }
+        };
+    </script>
+</body>
+</html>

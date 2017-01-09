@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Title</title>
+</head>
+<body>
+
+    <input type="file" name="file" id="fileuploade" size="40" onchange="fileChange(this);" />
+
+<script type="text/javascript" >
+
+   var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+
+
+   function fileChange(target){
+       var fileSize = 0;
+       if (isIE && !target.files) {    // IE浏览器
+           var filePath = target.value; // 获得上传文件的绝对路径
+           /**
+            * ActiveXObject 对象为IE和Opera所兼容的JS对象
+            * 用法：
+            *         var newObj = new ActiveXObject( servername.typename[, location])
+            *         其中newObj是必选项。返回 ActiveXObject对象 的变量名。
+            *        servername是必选项。提供该对象的应用程序的名称。
+            *        typename是必选项。要创建的对象的类型或类。
+            *        location是可选项。创建该对象的网络服务器的名称。
+            *\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+            *     Scripting.FileSystemObject 为 IIS 内置组件，用于操作磁盘、文件夹或文本文件，
+            *    其中返回的 newObj 方法和属性非常的多
+            *    如：var file = newObj.CreateTextFile("C:\test.txt", true) 第二个参表示目标文件存在时是否覆盖
+            *    file.Write("写入内容");    file.Close();
+            */
+           var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+           // GetFile(path) 方法从磁盘获取一个文件并返回。
+           var file = fileSystem.GetFile(filePath);
+           fileSize = file.Size;    // 文件大小，单位：b
+       }
+       else {    // 非IE浏览器
+           fileSize = target.files[0].size;
+       }
+       var size = fileSize / 1024;
+       console.log( size.toFixed(2) );
+   }
+</script>
+</body>
+</html>

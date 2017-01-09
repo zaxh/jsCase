@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片切换练习</title>
+    <style>
+        #wrap{
+            width: 500px;
+            height: 500px;
+            margin: 20px auto 0;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        #wrap .container{
+            position: relative;
+            width: 80%;
+            height: 400px;
+            margin: 50px auto 0;
+            border: 10px solid #ccc;
+        }
+        #wrap .container a{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 30px;
+            background: #000;
+            filter: alpha(opacity: 60);
+            opacity: 0.6;
+            text-decoration: none;
+            margin: auto;
+        }
+        #wrap .container a:hover{
+            filter: alpha(opacity: 90);
+            opacity: 0.9;
+        }
+        #left{
+            left: 0;
+        }
+        #right{
+            right: 0;
+        }
+        #span1{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: rgba(0,0,0,.6);
+            color: #fff;
+        }
+        #p1{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: rgba(0,0,0,.6);
+            color: #fff;
+            margin: 0 auto;
+        }
+        #img1{
+            width: 100%;
+            height: 400px;
+            background: #f1f1f1;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <input id="loop" type="button" value="循环切换" />
+        <input id="order" type="button" value="顺序切换" />
+        <div class="container">
+            <a href="javascript:;" id="left">&lt;</a>
+            <a href="javascript:;" id="right">&gt;</a>
+            <span id="span1">数量正在加载中。。。</span>
+            <p id="p1">图片信息正在加载中。。。。</p>
+            <img id="img1" src="" >
+        </div>
+    </div>
+    <script>
+        var oLoop = document.getElementById("loop");
+        var oOrder = document.getElementById("order");
+        var oLeft = document.getElementById("left");
+        var oRight = document.getElementById("right");
+        var oText = document.getElementById("span1");
+        var oP = document.getElementById("p1");
+        var oImg = document.getElementById("img1");
+
+        var img = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+        var desc = ["1.jpg","2.jpg","3.jpg","4.jpg"];
+        var num = 0;
+        var onOff = true;
+
+        //初始化
+        function Tab(){
+            oText.innerHTML = desc[num];
+            oP.innerHTML = num+1 +"/"+ img.length;
+            oImg.src = img[num];
+        }
+        Tab();
+        //循环按钮
+        oLoop.onclick = function(){
+          onOff = true;
+        };
+        //顺序按钮
+        oOrder.onclick = function(){
+            onOff = false;
+        };
+        //左切换按钮
+        oLeft.onclick = function(){
+            num --;
+            if( num<0 ){
+                if( onOff ){
+                    num = img.length-1;
+                }else{
+                    num = 0;
+                }
+            }
+            Tab();
+        };
+        //右切换按钮
+        oRight.onclick = function(){
+            num ++;
+            if( num>img.length-1 ){
+                if( onOff ){
+                    num = 0;
+                }else{
+                    num = img.length-1;
+                }
+            }
+            Tab();
+        }
+
+    </script>
+</body>
+</html>

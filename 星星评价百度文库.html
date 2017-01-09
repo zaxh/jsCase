@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度文库星星评价</title>
+    <link rel="stylesheet" href="阿里字体/iconfont.css">
+    <style>
+        *{margin:0; padding:0;}
+        .wrap{width:600px; height:20px; line-height:20px; font-size:14px; color:#333; margin:100px auto;}
+        .text{width:100%; height:20px; line-height:20px;}
+        .text i{display:inline-block; width:20px; height:20px; background:url("img/stars.png") no-repeat -39px 0; cursor:pointer; }
+        .container {width: 550px; height: 60px; margin: 50px auto;}
+        .Lbox {margin-left: 10px; line-height: 60px; float: left;}
+        .Lbox .ico {vertical-align:7px;}
+        .Lbox .txt { float: left; }
+        .container #ibox i {cursor: pointer; float: left; padding-right: 3px;}
+        .container .Lbox p {color: #f66; float:left; }
+        #img { float: left; margin: 10px 0 0 5px;}
+        .iconfont{font-family:"iconfont"; font-size:22px; font-style:normal;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="text">
+            <span>评价文档(简易版)：</span>
+            <i class="start"></i><i class="start"></i><i class="start"></i><i class="start"></i><i class="start"></i>
+            <em id="comment">滑动鼠标进行评分</em>
+        </div>
+    </div>
+    <div class="container">
+        <div class="Lbox">
+            <span class="txt"><img src="img/1s.png" class="ico">总体评价：</span>
+			<span id="ibox">
+				<i class="iconfont">&#xe63a;</i>
+				<i class="iconfont">&#xe63a;</i>
+				<i class="iconfont">&#xe63a;</i>
+				<i class="iconfont">&#xe63a;</i>
+				<i class="iconfont">&#xe63a;</i>
+			</span>
+            <p></p>
+        </div>
+        <img src="img/1l.png" id="img">
+    </div>
+    <script>
+        /* 简易评价开始*/
+        var oEm = document.getElementById("comment");
+        var oStart = document.getElementsByClassName("start");
+        var len = oStart.length;
+        var arrText = ["很差","较差","还行","推荐","力荐"];
+
+        for(var i=0;i<oStart.length;i++){
+            oStart[i].index = i;
+            oStart[i].onmouseenter = function(){
+                for(var k=len-1;k>0;k--){
+                    oStart[k].style.backgroundPositionX = '-39px';
+                }
+                for(var j=0;j<this.index+1;j++){
+                    oStart[j].style.backgroundPositionX = '0px';
+                    oEm.innerHTML = arrText[j];
+                }
+            };
+            oStart[i].onclick = function(){
+                for(var j=0;j<oStart.length;j++){
+                    oStart[j].onmouseenter = null;
+                }
+            }
+        }
+        /* 简易评价结束 */
+        /* 非简易评价 开始 */
+        var arrDes = ["很差","较差","还行","推荐","力荐"];
+        var oImg = document.getElementById("img");
+        var oS = document.getElementById("ibox");
+        var oSi = oS.getElementsByTagName("i");
+        var oP = document.getElementsByTagName("p")[0];
+        var len = oSi.length;
+        var num = null;
+
+        for(var i=0;i<oSi.length;i++){
+            oSi[i].index = i;
+            oSi[i].onmouseenter = function(){
+                num = this.index + 1;
+                oImg.style.display = "none";
+                oP.innerHTML = arrDes[this.index];
+                for(var k=len-1;k>=0;k--){
+                    if(k<=1 && k>=0){
+                        for(var l=0;l<k;l++){
+                            oSi[l].innerHTML = "&#xe673";
+                            oSi[l].style.color = "#000";
+                        }
+                    }
+                    oSi[k].innerHTML = "&#xe63a;";
+                    oSi[k].style.color = "#000";
+                }
+                if( num < 3 ){
+                    for(var j=0;j<this.index+1;j++){
+                        oSi[j].innerHTML = "&#xe673";
+                    }
+                }else{
+                    for(var j=0;j<this.index+1;j++){
+                        oSi[j].innerHTML = "&#xe673";
+                        oSi[j].style.color = '#f7b500';
+                    }
+                }
+            };
+           oSi[i].onmouseleave = function(){
+                for(var j=0;j<len;j++){
+                    oSi[j].innerHTML = "&#xe63a;";
+                    oSi[j].style.color = "#000";
+                }
+               oP.innerHTML = "";
+               oImg.style.display = "block";
+            };
+            oSi[i].onclick = function(){
+                for(var j=0;j<len;j++){
+                    oSi[j].onmouseenter = null;
+                    oSi[j].onmouseout = null;
+                }
+            }
+        }
+
+
+        /* 非简易评价 结束 */
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮滚动</title>
+    <style>
+        *{margin:0; padding:0; list-style:none;}
+        .wrap{position:relative; width:640px; height:50px; margin:100px auto 0; border:1px solid #ccc; overflow:hidden;}
+        .wrap .btn{display:inline-block; width:20px; height:50px; font-size:30px; color:rgba(255,255,255,.6); background:rgba(0,0,0,.6); line-height: 50px; text-align:center; cursor:pointer;}
+        .wrap .btn.prev{float:left;}
+        .wrap .btn.next{float:right;}
+        .wrap .btn:hover{color:rgba(255,255,255,1); background:rgba(0,0,0,1);}
+        .wrap .img-wrap{position:relative; float:left; width:600px; height:50px; background:red; overflow:hidden;}
+        .wrap .img-wrap .img-list{position:absolute; left:0; top:0; height:50px;}
+        .wrap .img-wrap .img-list .img-list-items{float:left; width:100px; height:50px; text-align:center; line-height:50px;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <span id="prev" class="btn prev">&lt;</span>
+        <span id="next" class="btn next">&gt;</span>
+        <div class="img-wrap">
+            <ul class="img-list">
+                <li class="img-list-items">1</li>
+                <li class="img-list-items">2</li>
+                <li class="img-list-items">3</li>
+                <li class="img-list-items">4</li>
+                <li class="img-list-items">5</li>
+                <li class="img-list-items">6</li>
+                <li class="img-list-items">7</li>
+                <li class="img-list-items">8</li>
+                <li class="img-list-items">9</li>
+                <li class="img-list-items">10</li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var widLi = $(".img-list-items").width();
+            var lenLi = $(".img-list-items").length;
+            var $left = parseInt( $(".img-list").css("left") );
+
+            //初始化ul 宽度
+            $(".img-list").width( widLi*lenLi + "px" );
+            var maxLeft = parseInt( $(".img-list").width()- widLi*6 );
+            $("#prev").click(function(){
+                $left -=widLi;
+                if( $left <=-maxLeft ){$left=-maxLeft;}
+                $(".img-list").animate({"left":$left+"px"},1000);
+            });
+            $("#next").click(function(){
+                $left +=widLi;console.log( $left );
+                if( $left >=0 ){$left=0;}
+                $(".img-list").animate({"left":$left+"px"},1000);
+            });
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>QQ号码验证</title>
+</head>
+
+<body>
+
+请输入QQ号码：<input type="text" id="input" />
+<input type="button" value="判断" id="btn" />
+
+
+<br />
+1、有没有输入<br />
+2、输入的是不是数字<br />
+3、不能有0在前面<br />
+4、不能是小数<br />
+5、输入的数字必须在5位以上、10位以内<br />
+
+<script>
+    var oInput = document.getElementById("input");
+    var oBtn = document.getElementById("btn");
+
+    oBtn.onclick = function(){
+        var inputVal = oInput.value;
+        if( inputVal == "" ){
+            alert( "不能为空" );
+        }else if( isNaN( Number( inputVal ) ) ){
+            alert( "输入信息不是数字" );
+        }else if( inputVal[0] == "0" ){
+            alert( "不能有0在前面" );
+        }else if( parseInt( inputVal ) !== parseFloat( inputVal ) ){
+            alert( "不能是小数" );
+        }else if( inputVal.length<5 || inputVal.length>10 ){
+            alert( "输入的数字必须在5位以上、10位以内" );
+        }
+    }
+</script>
+</body>
+</html>
