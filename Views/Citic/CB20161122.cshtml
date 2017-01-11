@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "核保信息";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <script type="text/javascript" src="~/Content/scripts/jedate/jedate.js"></script>
+    <link href="@Url.Content("~/Content/citic/themes/CB20161122.css")" rel="Stylesheet" type="text/css" />
+}
+@section Js{
+
+    <script type="text/javascript" src="~/Content/scripts/CB20161122.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            jeDate({
+                dateCell: "#date1",
+                format: "YYYY-MM-DD hh:mm:ss",
+                isinitVal: true,
+                isTime: true, //isClear:false,
+                minDate: "1900-01-01 00:00:00",
+                okfun: function (val) { alert(val) }
+            });
+            jeDate({
+                dateCell: "#date2",
+                format: "YYYY-MM-DD hh:mm:ss",
+                isinitVal: true,
+                isTime: true, //isClear:false,
+                minDate: "1900-01-01 00:00:00",
+                okfun: function (val) { alert(val) }
+            });
+            jeDate({
+                dateCell: "#birth",
+                format: "YYYY-MM-DD",
+                isinitVal: true,
+                isTime: true, //isClear:false,
+                minDate: "1900-01-01 00:00:00",
+                okfun: function (val) { alert(val) }
+            });
+            jeDate({
+                dateCell: "#birth1",
+                format: "YYYY-MM-DD",
+                isinitVal: true,
+                isTime: true, //isClear:false,
+                minDate: "1900-01-01 00:00:00",
+                okfun: function (val) { alert(val) }
+            });
+        });
+        
+    </script>
+}
+
+<div class="wrap">
+    <h1>核保信息表</h1>
+    <div class="insured-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">被保险人</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="name">中文姓名：</td>
+                    <td class="con"><input type="text" class="insuredName" id="insuredName"><em>*</em></td>
+                    <td class="val insuredNameVal1"></td>
+                </tr>
+                <tr>
+                    <td class="name">英文姓名：</td>
+                    <td class="con"><input type="text" class="EinsuredName" id="EinsuredName"><em>*</em></td>
+                    <td class="val EinsuredNameVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">证件类型：</td>
+                    <td class="con">
+                        <label for="idCard"><input type="radio" id="idCard" name="type" value="身份证" checked>身份证</label>
+                        <label for="passport"><input type="radio" id="passport" name="type" value="护照">护照</label>
+                    </td>
+                    <td class="val"></td>
+                </tr>
+                <tr>
+                    <td class="name">证件号码：</td>
+                    <td class="con"><input type="text" class="numCard" id="numCard"><em>*</em></td>
+                    <td class="val numCardVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">出生日期：</td>
+                    <td class="con"><input type="text" class="born" id="birth1" readonly="readonly"><em>*</em></td>
+                    <td class="val bornVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">旅游目的地：</td>
+                    <td class="con"><input type="text" class="destination" id="destination" value="申根协议国家 SCHENGEN STATES"><em>*</em></td>
+                    <td class="val destinationVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">性别：</td>
+                    <td class="con">
+                        <label for="man"><input type="radio" id="man" name="sex" value="男" checked>男</label>
+                        <label for="woman"><input type="radio" id="woman" name="sex" value="女">女</label>
+                    </td>
+                    <td class="val sexVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">投保人性质：</td>
+                    <td class="con">
+                        <label for="company" class="lc"><input type="radio" id="company" name="applicant" value="企业" checked>企业</label>
+                        <label for="person" class="lp"><input type="radio" id="person" name="applicant" value="个人">个人</label>
+                    </td>
+                    <td class="val"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div id="insurer_company_wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">投保人</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="name">机构名称：</td>
+                    <td class="con"><input type="text" class="comName" id="nameMechanism" value="北京长城国际旅行社有限公司"><em>*</em></td>
+                    <td class="val comNameVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">机构英文名称：</td>
+                    <td class="con"><input type="text" class="EnameMechanism" id="EnameMechanism" value=""><em>*</em></td>
+                    <td class="val EnameMechanismVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">是否为机构：</td>
+                    <td class="con">
+                        <label for="yes"><input type="radio" id="yes" name="institutions" value="是" checked>是</label>
+                        <label for="no"><input type="radio" id="no" name="institutions" value="否">否</label>
+                    </td>
+                    <td class="val"></td>
+                </tr>
+                <tr>
+                    <td class="name">组织机构代码证：</td>
+                    <td class="con"><input type="text" class="organization" id="organization" value="9111010263439745X"><em>*</em></td>
+                    <td class="val organizationVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">地址：</td>
+                    <td class="con"><input type="text" class="address" id="address" value="北京市西城区北三环中路19号"><em>*</em></td>
+                    <td class="val addressVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">联系人：</td>
+                    <td class="con"><input type="text" class="contacts" id="contacts"><em>*</em></td>
+                    <td class="val contactsVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">联系人电话：</td>
+                    <td class="con"><input type="text" class="phone" id="phone"><em>*</em></td>
+                    <td class="val phoneVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">联系电话：</td>
+                    <td class="con"><input type="text" class="phone1" id="phone1"><em>*</em></td>
+                    <td class="val phone1Val"></td>
+                </tr>
+                <tr>
+                    <td class="name">企业性质：</td>
+                    <td class="con"><input type="text" class="nature" id="nature" value="有限责任公司（自然人投资或控股）"><em>*</em></td>
+                    <td class="val natureVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">电子邮箱：</td>
+                    <td class="con"><input type="text" class="email" id="email"><em>*</em></td>
+                    <td class="val emailVal1"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div id="insurer_person_wrap" style="display:none;">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">投保人</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="name">投保人姓名：</td>
+                    <td class="con"><input type="text" class="insuredName" id="name"><em>*</em></td>
+                    <td class="val nameVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">投保人英文姓名：</td>
+                    <td class="con"><input type="text" class="EapplicantName" id="EapplicantName"><em>*</em></td>
+                    <td class="val EapplicantNameVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">投保人证件类型：</td>
+                    <td class="con">
+                        <label for="idCard1"><input type="radio" id="idCard1" name="type1" value="身份证" checked>身份证</label>
+                        <label for="passport1"><input type="radio" id="passport1" name="type1" value="护照">护照</label>
+                    </td>
+                    <td class="val quotaVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">投保人证件号码：</td>
+                    <td class="con"><input type="text" class="quota" id="numCard1"><em>*</em></td>
+                    <td class="val numCard1Val"></td>
+                </tr>
+                <tr>
+                    <td class="name">投保人出生日日期：</td>
+                    <td class="con"><input type="text" class="quota" id="birth" readonly="readonly"><em>*</em></td>
+                    <td class="val birthVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">性别：</td>
+                    <td class="con">
+                        <label for="man1"><input type="radio" id="man1" name="sex1" value="男" checked>男</label>
+                        <label for="woman1"><input type="radio" id="woman1" name="sex1" value="女">女</label>
+                    </td>
+                    <td class="val sexVal1"></td>
+                </tr>
+                <tr>
+                    <td class="name">手机号：</td>
+                    <td class="con"><input type="text" class="mobile" id="mobile"><em>*</em></td>
+                    <td class="val mobileVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">被保险人与投保人关系：</td>
+                    <td class="con">
+                        <label for="son"><input type="radio" id="person1" name="relationship" value="个人" checked>个人</label>
+                        <label for="son"><input type="radio" id="son" name="relationship" value="儿女">儿女</label>
+                        <label for="other"><input type="radio" id="other" name="relationship" value="其他">其他</label>
+                    </td>
+                    <td class="val"></td>
+                </tr>
+                <tr>
+                    <td class="name">投保人电子邮箱：</td>
+                    <td class="con"><input type="text" class="email" id="emailA"><em>*</em></td>
+                    <td class="val emailValA"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="insuranceType-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">险种信息</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="name">保险起期：</td>
+                    <td class="con"><input type="text" class="date" id="date1" readonly="readonly"><em>*</em></td>
+                    <td class="val dateVal"></td>
+                </tr>
+                <tr>
+                    <td class="name">保险止期：</td>
+                    <td class="con"><input type="text" class="date" id="date2" readonly="readonly"><em>*</em></td>
+                    <td class="val dateVal"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="btn-wrap">
+        <input type="submit" id="submit" value="提交">
+        <input type="reset" value="重置">
+    </div>
+    <input type="hidden" name="jsondata" id="data" value=" " />
+</div>
+
+

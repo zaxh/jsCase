@@ -1,0 +1,257 @@
+﻿@{
+    ViewBag.Title = "签证国家列表";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/bootstrap.min.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/details.css")" rel="Stylesheet" type="text/css" />
+
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/details.js"></script>
+}
+<div class="container-wrap">
+    <header style="background:#8d7d19">
+        <h2>申根签证</h2>
+        <p>接受预定</p>
+        <div class="condition">
+            <span>客人需自行送签</span><span>电子材料</span><span>纸质材料</span><span>需采集指纹</span>
+        </div>
+    </header>
+    <ul class="description">
+        <li class="desc-wrap col-xs-4"><p class="title">有效期限</p><p class="con">以使馆签发为准</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">入境次数</p><p class="con">以使馆签发为准</p></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#visaType"><p class="title">签证类别</p><p class="con">个人旅游、商务、探亲访友签证</p><em></em></a></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#handlingTime"><p class="title">办理时间</p><p class="con">收齐资料后的3-15个工作日</p><em></em></a></li>
+        <li class="desc-wrap col-xs-4"><p class="title">停留时间</p><p class="con">根据行程来定</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">受理领区</p><p class="con">全国</p></li>
+    </ul>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="visaType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">签证类别</h4>
+                </div>
+                <div class="modal-body">个人旅游、商务、探亲访友签证</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="handlingTime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel1">办理时间</h4>
+                </div>
+                <div class="modal-body">收齐资料后的3-15个工作日</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 模态框（Modal）结束 -->
+    <div class="remarks">
+        <p>注:不含签证费，因签证费会受汇率浮动影响，最终以大使馆实际收费标准为准;含时间在15天以内的出境旅行意外险</p>
+    </div>
+
+    <!-- process start -->
+    <div class="process-wrap">
+        <ul class="process-title">
+            <li class="pro-title-item active">基本信息</li>
+            <li class="pro-title-item">申请资料</li>
+            <li class="pro-title-item">办理流程</li>
+            <li class="pro-title-item">退订条款</li>
+        </ul>
+        <ul class="process-content">
+            <li class="pro-con-item show">
+                <div class="pro-con-title"><h3>基本信息</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4>服务内容</h4>
+                        <p>1、提供给客户中文填表，代填领馆正式申请表</p>
+                        <p>2、为客户提供材料清单，对客户全部资料进行翻译整理</p>
+                        <p>3、提供在职和在校证明模板</p>
+                        <p>4、远程电话服务</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>受理范围</h4>
+                        <p>1、中国大陆因私护照</p>
+                        <p>2、不接受工作地、学习地在大陆地区以外的申请者</p>
+                        <p>3、不接受18岁以下学生儿童单独申请。</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>备注</h4>
+                        <p>1、申根国包含：奥地利、比利时、捷克、丹麦、爱沙尼亚、芬兰、法国、德国、希腊、匈牙利、冰岛、意大利、拉脱维亚、列支敦士登、立陶宛、卢森堡、马耳他、荷兰、挪威、波兰、葡萄牙、斯洛伐克、斯洛文尼亚、西班牙、瑞典、瑞士；</p>
+                        <p>2、根据使馆规定：如您行程中包含不止一个申根国家，需向停留晚数最长的国家申请签证（如：行程中在德国停留5晚、在意大利停留4晚、在法国停留6晚，需申请法国签证）；如每个国家停留晚数相同，需向先进入的国家申请签证。</p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>申请资料</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4>  一、身份证明类</h4>
+                        <p>1、护照原件 </p>
+                        <p>2、照片2张</p>
+                        <p>3、身份证复印件</p>
+                        <p>4、户口本全本复印件</p>
+                        <p>5、结婚证复印件</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>二、资产证明类</h4>
+                        <p>1、银行流水对账单 </p>
+                        <p>2、其他资产（如有以下证明也可做辅助资产提供，提高出签率）</p>
+                        <p class="child">房产证复印件</p>
+                        <p class="child">车辆行驶证复印件</p>
+                        <p class="child">股票交割单或有价证券证明复印件</p>
+                        <p class="child">申请人纳税单等复印件</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>三、工作证明类</h4>
+                        <p>1、在职证明原件</p>
+                        <p>2、企业营业执照副本复印件加盖公章</p>
+                        <p>3、退休证复印件（退休人员必须提供）</p>
+                        <p>4、学生证复印件或在校证明原件（在校学生必须提供）</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>四、授权（父母单方带18岁一下儿童出行，另一方需提供授权）</h4>
+                        <p>1、未随行父母身份证复印件</p>
+                        <p>2、公证书（需要亲属关系公证和委托公证）</p>
+                        <p>3、儿童出生证明复印件</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>五、出行信息类（如有请提供）</h4>
+                        <p>1、全程机票、酒店预订单及行程计划表</p>
+                        <p>2、如此次出行为商务性质，则需要提供公司的相关证明材料</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>六、个人信息采集表</h4>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>办理流程</h3></div>
+                <div class="pro-con-con">
+                    <div class="proBox">
+                        <div class="circle">1</div>
+                        <h4>初步沟通</h4>
+                        <p>
+                            在客户报名成功后请到办理支行缴纳签证费用，将有客服人员与客户进行初步沟通，确认信息以及协助客户准备签证递送的资料
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">2</div>
+                        <h4>准备并递送签证资料</h4>
+                        <p>
+                            客户选择快递递交签证资料
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">3</div>
+                        <h4>审核并制作资料</h4>
+                        <p>
+                            后台组收到客户资料后4-5个工作日内完成审核和整理，并致电告知资料已收讫，如有任何缺少项会告知客户补充或修改
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">4</div>
+                        <h4>送签</h4>
+                        <ul>
+                            <li>1) 由于法国签证需要申请人本人前往签证中心递交资料、留生物信息，签证顾问将与客户电话协商赴签证中心递交资料的时间，并协助在使馆网站上预约（签证繁忙时可能要约到 10个工作日以后）</li>
+                            <li>2) 请注意，递交资料时间一旦确定，原则上不易更改，请务必准时到达签证中心</li>
+                            <li>
+                                3) 请携带好制作好的所有送签资料以及相应项目的证件原件亲自前往法国签证中心递送并做指纹扫描
+                                （因法国使馆需要对申请者进行指纹采集，故要求所有办理法国签证的客人亲自前往法国签证中心）
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">5</div>
+                        <h4>出签</h4>
+                        <ul>
+                            <li>1) 申根（ 法国） 使馆的签证受理时间，一般为客户递交申请材料后 3-10 天完成，所以请耐心等待</li>
+                            <li>
+                                2) 为了节省客户时间，建议尽量选择快递的方式领取护照， 在递送资料后请注意查收； 如果选择的是自取护照或他人代取护照的， 请注意领取护照的时间，取签时需携带取件凭证原件至：<br>
+                                a、法国签证出签时间为递送资料后的 3 天，如果客户申请的是法国签证，可以在送签后的 5 天左右去签证中心领取护照 <br>
+                                b、其它申根国家出签时间略有不同，如果客户申请的是法国以外的申根国家，请电话咨询签证顾问，工作人员将查询取签时间
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">5</div>
+                        <h4>核对信息</h4>
+                        <p>
+                            收到出签护照后请认真核对签证页信息是否有误（护照号、姓名、签证有效期、出生年月等）
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>退订条款</h3></div>
+                <div class="pro-con-con">
+                    <p class="refund">近期将推出签证拒签费用损失补贴服务，最高补贴1400元/单，敬请期待。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="button">
+    <div class="back"><a href="QZ20161123">&lt;</a></div>
+    <div class="appointment"><a href="#appointment" data-toggle="modal">开始预约</a></div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="appointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">预订信息</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form" method="get" action="statement" id="form">
+                    <div class="form-group">
+                        <label for="name">联系人姓名</label>
+                        <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">联系人手机</label>
+                        <input type="text" class="form-control" id="mobile" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">联系人邮箱</label>
+                        <input type="text" class="form-control" id="mail" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">人数</label>
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

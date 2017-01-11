@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "中信全球签";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/scripts/skin/layer.css")">
+    <style type="text/css">
+        html {
+            font-family: "Helvetica Neue",Helvetica,sans-serif;
+            /*font-size:62.5%;*/
+            /*谷歌浏览器最小字体12px*/
+            -webkit-text-size-adjust: 100%; /*100%,none 关闭字体大小自动调整功能*/
+            /*a标签及拥有 :active 伪类的元素去除高亮显示的效果*/
+            -webkit-tap-highlight-color: transparent;
+            /*禁止文本被选中*/
+            -webkit-user-select: none;
+            height: 100%;
+            width: 100%;
+            max-width: 640px;
+            min-width: 300px;
+            margin: 0 auto;
+        }
+
+        body {
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch; /*开启mobile网页快速滚动和回弹的效果*/
+            overflow-scrolling: touch;
+            width: 100%;
+            max-width: 640px;
+            min-width: 300px;
+            height: 100%;
+            background: url("../../Content/citic/images/CS20161018/visaContent.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        /* 隐藏滚动条 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        #wrap {
+            position: absolute;
+            top: 15%;
+            left: 0;
+            right: 0;
+            width: 80%;
+            height: 75%;
+            margin: 0 auto;
+            border-radius: 15px;
+            -webkit-box-shadow: 0 0 10px #000;
+            -moz-box-shadow: 0 0 10px #000;
+            box-shadow: 0 0 10px #000;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            background: rgba(37, 30, 30, 0.3);
+        }
+         #wrap div.container .result {
+                    position:absolute;
+                    top: 25%;
+                    left:0;
+                    right:0;
+                    margin:auto;
+                    width: 100%;
+                    text-align: center;
+                }
+
+                    #wrap div.container .result > p {
+                        width: 100%;
+                        color: #fff;
+                        font-family: "华文行楷";
+                        font-weight: bold;
+                        text-align: center;
+                        margin-bottom: 20px;
+                        text-shadow: 0 0 10px #000;
+                        font-size:30px;
+                    }
+
+                        #wrap div.container .result > p > strong {
+                            display: block;
+                            text-align: center;
+                            /*color: orangered;*/
+                            font-size: 72px;
+                            font-style: italic;
+                            margin:20px 0;
+                        }
+
+                    #wrap div.container .result > a {
+                        display: inline-block;
+                        width: 100px;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: center;
+                        color: #f2f2f7;
+                        text-decoration: none;
+                        border-radius: 20px;
+                        border: 1px solid #fff;
+                        background: rgba(110,121,121,0.4);
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+
+                    #wrap div.container .result > input {
+                        display: inline-block;
+                        width: 100px;
+                        height: 30px;
+                        line-height: 30px;
+                        border-radius: 20px;
+                        border: 1px solid #fff;
+                        background: rgba(110,121,121,0.4);
+                        outline: none;
+                        color: #f2f2f7;
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+    </style>
+
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/layer.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var str = window.location.search;   //location.search是从当前URL的?号开始的字符串
+            
+            var args = str.split("?");
+            console.log( args );
+            var precent = args[1];
+            var address = args[2];
+            $("#precent").html("您的签证通过率为<strong>" + precent + "</strong>");
+            
+            //重置按钮
+            $("#reset").click(function () {
+                location.href = address;
+            });
+        });
+    </script>
+
+}
+<div id="wrap">
+    <div class="container">
+        <div class="result">
+            <p id="precent"></p>
+            <a href="http://wx.evisa99.com/product/index/CiticApp">办理签证</a>
+            <input id="reset" type="reset" value="再测一次">
+        </div>
+    </div>
+</div>

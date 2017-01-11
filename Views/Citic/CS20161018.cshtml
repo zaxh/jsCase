@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "中信全球签";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <style type="text/css">
+    html, body {
+        width: 100%;
+        max-width: 640px;
+        min-width: 300px;
+        height: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    form {
+        height:100%;
+    }
+    #home_wrap {
+        position: relative;
+        width: 100%;
+        max-width: 640px;
+        min-width: 300px;
+        height: 100%;
+        margin: 0 auto;
+        background: url("../../Content/citic/images/CS20161018/visaHome.png") no-repeat;
+        background-size: 100% 100%;
+    }
+
+        #home_wrap ul.flag-list {
+            position: absolute;
+            top: 27%;
+            left: 0;
+            right: 0;
+            width: 75%;
+            margin: 0 auto;
+            display: -moz-box; /* Firefox */
+            display: -webkit-box; /* Safari and Chrome */
+            display: -ms-flexbox; /* Internet Explorer 10 */
+            display: box;
+        }
+
+            #home_wrap ul.flag-list.list2 {
+                top: 45%;
+            }
+
+            #home_wrap ul.flag-list li.flag-items {
+                -moz-box-flex: 1.0; /* Firefox */
+                -webkit-box-flex: 1.0; /* Safari and Chrome */
+                -ms-flex: 1.0; /* Internet Explorer 10 */
+                box-flex: 1.0;
+                width: 25%;
+                margin-right: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+
+            #home_wrap ul.flag-list li.flag-items a {
+                display: block;
+                color: #fff;
+            }
+
+            #home_wrap ul.flag-list li.flag-items a.img {
+                width: 100%;
+                height: 60px;
+                border-radius: 50%;
+                margin-bottom: 4px;
+            }
+</style>
+}
+@section Js{
+    <script type="text/javascript">
+    </script>
+}
+<div id="home_wrap">
+    <ul class="flag-list">
+        <li class="flag-items"><a href="~/Citic/CS20161018_US" class="img"></a></li>
+        <li class="flag-items"><a href="~/Citic/CS20161018_Canada" class="img"></a></li>
+        <li class="flag-items"><a href="~/Citic/CS20161018_Japan" class="img"></a></li>
+        <li class="flag-items"><a href="~/Citic/CS20161018_Korea" class="img"></a></li>
+    </ul>
+    <ul class="flag-list list2">
+        <li class="flag-items"><a href="~/Citic/CS20161018_NZ" class="img"></a></li>
+        <li class="flag-items"><a href="~/Citic/CS20161018_Sg" class="img"></a></li>
+        <li class="flag-items"><a href="~/Citic/CS20161018_Britain" class="img"></a></li>
+        <li class="flag-items"><a href="~/Citic/CS20161018_AU" class="img"></a></li>
+    </ul>
+</div>

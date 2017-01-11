@@ -1,0 +1,369 @@
+﻿@{
+    ViewBag.Title = "签证国家列表";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/bootstrap.min.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/statement.css")" rel="Stylesheet" type="text/css" />
+
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     $(function () {
+         //获取参数
+         var url = window.location.search;
+         var para = [];
+         var arr = url.split("&");
+         
+         for (var i = 0; i < arr.length; i++) {
+             para.push(arr[i].split("=")[1]);
+         }
+         //参数赋值
+         $("#username").val(para[0]);
+         $("#tel").val(para[1]);
+         $("#email").val(para[2]);
+         $("#renshu").val(para[3]);
+         $("#Country").val(para[4]);
+         $("#Merchant").val(para[5]);
+         $("#TsrName").val(para[6]);
+         $("#zongjia").val(para[7]);
+         //$("#username").val(para[0]);
+         $("span.username").html( $("#username").val() );
+         $("span.renshu").html($("#renshu").val() + "人");
+
+
+
+
+
+
+
+
+
+        var Merchant = $("#Merchant").val();
+        var zongjia = $("#zongjia").val();
+        switch (Merchant.toLowerCase()) {
+            case "bj":
+                GetBeijingBank();
+                $("#lblBranch").show();
+                $("#pnlBranch").show();
+                break;
+            case "citicbuy":
+            case "citicsh":
+                GetBranchCity("上海");
+                $("#lblBranch").show();
+                $("#pnlBranch").show();
+                break;
+        }
+        if (zongjia == "0") {
+            $("#pricetip").hide();
+        }
+    })
+    function GetBeijingBank() {
+        $("#ddlBranchCity").change(function () { GetBeijingBankCity(this.value); })
+        $("#ddlBranchCity").empty();
+        $("#ddlBranchCity").append("<option value=''>请选择...</option>");
+        $("#ddlBranchCity").append("<option value='北京'>北京</option>");
+        $("#ddlBranchCity").append("<option value='上海'>上海</option>");
+        $("#ddlBranchCity").append("<option value='广东'>广东</option>");
+        $("#ddlBranchCity").append("<option value='河北'>河北</option>");
+        $("#ddlBranchCity").append("<option value='湖南'>湖南</option>");
+        $("#ddlBranchCity").append("<option value='江苏'>江苏</option>");
+        $("#ddlBranchCity").append("<option value='江西'>江西</option>");
+        $("#ddlBranchCity").append("<option value='山东'>山东</option>");
+        $("#ddlBranchCity").append("<option value='陕西'>陕西</option>");
+        $("#ddlBranchCity").append("<option value='浙江'>浙江</option>");
+    }
+    function GetBeijingBankCity(p) {
+        $("#ddlBranchName").change(function () { GetBeijingBankAddress(this.value); })
+        $("#ddlBranchName").empty();
+        $("#ddlBranchName").append("<option value=''>请选择...</option>");
+        switch (p) {
+            case "北京":
+                $("#ddlBranchName").append("<option value='00402'>北京-朝阳-北辰路</option>");
+                $("#ddlBranchName").append("<option value='12701'>北京-朝阳-北苑路</option>");
+                $("#ddlBranchName").append("<option value='00401'>北京-朝阳-红星</option>");
+                $("#ddlBranchName").append("<option value='18401'>北京-朝阳-朝阳北路</option>");
+                $("#ddlBranchName").append("<option value='19201'>北京-朝阳-常营</option>");
+                $("#ddlBranchName").append("<option value='19191'>北京-朝阳-东四环</option>");
+                $("#ddlBranchName").append("<option value='06101'>北京-朝阳-芳草地</option>");
+                $("#ddlBranchName").append("<option value='05702'>北京-朝阳-关东店</option>");
+                $("#ddlBranchName").append("<option value='13801'>北京-朝阳-大望路</option>");
+                $("#ddlBranchName").append("<option value='06301'>北京-朝阳-亚运村</option>");
+                $("#ddlBranchName").append("<option value='19151'>北京-朝阳-国贸</option>");
+                $("#ddlBranchName").append("<option value='06001'>北京-朝阳-东长安街</option>");
+                $("#ddlBranchName").append("<option value='19301'>北京-朝阳-西坝河</option>");
+                $("#ddlBranchName").append("<option value='11701'>北京-朝阳-望京</option>");
+                $("#ddlBranchName").append("<option value='18301'>北京-朝阳-姚家园</option>");
+                $("#ddlBranchName").append("<option value='19091'>北京-大兴-大兴经济开发区</option>");
+                $("#ddlBranchName").append("<option value='01601'>北京-东城-中轴路</option>");
+                $("#ddlBranchName").append("<option value='00801'>北京-东城-灯市口</option>");
+                $("#ddlBranchName").append("<option value='00602'>北京-东城-东四</option>");
+                $("#ddlBranchName").append("<option value='00901'>北京-东城-景山</option>");
+                $("#ddlBranchName").append("<option value='03601'>北京-东城-东直门</option>");
+                $("#ddlBranchName").append("<option value='05501'>北京-东城-光明</option>");
+                $("#ddlBranchName").append("<option value='19061'>北京-东城-广渠门外大街</option>");
+                $("#ddlBranchName").append("<option value='00301'>北京-东城-和平里</option>");
+                $("#ddlBranchName").append("<option value='00501'>北京-东城-建国</option>");
+                $("#ddlBranchName").append("<option value='01001'>北京-东城-安定门</option>");
+                $("#ddlBranchName").append("<option value='00701'>北京-东城-长城</option>");
+                $("#ddlBranchName").append("<option value='05001'>北京-东城-天坛</option>");
+                $("#ddlBranchName").append("<option value='04901'>北京-东城-天桥</option>");
+                $("#ddlBranchName").append("<option value='15201'>北京-房山-房山</option>");
+                $("#ddlBranchName").append("<option value='04301'>北京-丰台-丰台</option>");
+                $("#ddlBranchName").append("<option value='04601'>北京-丰台-成寿寺</option>");
+                $("#ddlBranchName").append("<option value='19161'>北京-丰台-青塔</option>");
+                $("#ddlBranchName").append("<option value='19081'>北京-丰台-太平桥</option>");
+                $("#ddlBranchName").append("<option value='19291'>北京-丰台-政务中心</option>");
+                $("#ddlBranchName").append("<option value='18501'>北京-丰台-马家堡</option>");
+                $("#ddlBranchName").append("<option value='11801'>北京-海淀-世纪城</option>");
+                $("#ddlBranchName").append("<option value='17201'>北京-海淀-北清路</option>");
+                $("#ddlBranchName").append("<option value='08901'>北京-海淀-双秀</option>");
+                $("#ddlBranchName").append("<option value='18801'>北京-海淀-中关村分行营业部</option>");
+                $("#ddlBranchName").append("<option value='19181'>北京-海淀-互联网金融中心</option>");
+                $("#ddlBranchName").append("<option value='02301'>北京-海淀-新街口北大街</option>");
+                $("#ddlBranchName").append("<option value='08701'>北京-海淀-阜裕</option>");
+                $("#ddlBranchName").append("<option value='07101'>北京-海淀-翠微路</option>");
+                $("#ddlBranchName").append("<option value='19051'>北京-海淀-五棵松</option>");
+                $("#ddlBranchName").append("<option value='10601'>北京-海淀-中关村科技园区</option>");
+                $("#ddlBranchName").append("<option value='13401'>北京-海淀-四季青</option>");
+                $("#ddlBranchName").append("<option value='19251'>北京-海淀-玉渊潭</option>");
+                $("#ddlBranchName").append("<option value='16101'>北京-海淀-清河</option>");
+                $("#ddlBranchName").append("<option value='09301'>北京-海淀-清华大学</option>");
+                $("#ddlBranchName").append("<option value='09101'>北京-海淀-甘家口</option>");
+                $("#ddlBranchName").append("<option value='10701'>北京-海淀-上地</option>");
+                $("#ddlBranchName").append("<option value='10801'>北京-海淀-国兴家园</option>");
+                $("#ddlBranchName").append("<option value='07001'>北京-海淀-双榆树</option>");
+                $("#ddlBranchName").append("<option value='07901'>北京-海淀-万寿路</option>");
+                $("#ddlBranchName").append("<option value='19111'>北京-海淀-东升科技园</option>");
+                $("#ddlBranchName").append("<option value='10101'>北京-海淀-金运</option>");
+                $("#ddlBranchName").append("<option value='19001'>北京-海淀-橡树湾</option>");
+                $("#ddlBranchName").append("<option value='12601'>北京-海淀-北航</option>");
+                $("#ddlBranchName").append("<option value='08001'>北京-海淀-西客站</option>");
+                $("#ddlBranchName").append("<option value='07201'>北京-海淀-中关村</option>");
+                $("#ddlBranchName").append("<option value='08201'>北京-海淀-白石桥</option>");
+                $("#ddlBranchName").append("<option value='12501'>北京-海淀-紫竹</option>");
+                $("#ddlBranchName").append("<option value='15301'>北京-怀柔-怀柔</option>");
+                $("#ddlBranchName").append("<option value='04101'>北京-西城-白云</option>");
+                $("#ddlBranchName").append("<option value='15501'>北京-门头沟-门头沟</option>");
+                $("#ddlBranchName").append("<option value='15701'>北京-密云-密云</option>");
+                $("#ddlBranchName").append("<option value='15601'>北京-平谷-平谷</option>");
+                $("#ddlBranchName").append("<option value='10301'>北京-石景山-京源路</option>");
+                $("#ddlBranchName").append("<option value='19101'>北京-石景山-远洋山水</option>");
+                $("#ddlBranchName").append("<option value='18101'>北京-顺义-石门</option>");
+                $("#ddlBranchName").append("<option value='07601'>北京-顺义-绿港国际中心</option>");
+                $("#ddlBranchName").append("<option value='16201'>北京-通州-瑞都</option>");
+                $("#ddlBranchName").append("<option value='17801'>北京-西城-北三环</option>");
+                $("#ddlBranchName").append("<option value='01301'>北京-西城-车公庄</option>");
+                $("#ddlBranchName").append("<option value='01901'>北京-西城-阜成</option>");
+                $("#ddlBranchName").append("<option value='13201'>北京-西城-西单</option>");
+                $("#ddlBranchName").append("<option value='09201'>北京-西城-燕京</option>");
+                $("#ddlBranchName").append("<option value='16601'>北京-西城-广源</option>");
+                $("#ddlBranchName").append("<option value='03201'>北京-西城-广安</option>");
+                $("#ddlBranchName").append("<option value='03801'>北京-西城-天宁</option>");
+                $("#ddlBranchName").append("<option value='10001'>北京-西城-总行营业部</option>");
+                $("#ddlBranchName").append("<option value='17601'>北京-西城-马连道</option>");
+                $("#ddlBranchName").append("<option value='19221'>北京-西城-南纬路</option>");
+                $("#ddlBranchName").append("<option value='03001'>北京-西城-琉璃厂</option>");
+                $("#ddlBranchName").append("<option value='01302'>北京-西城-官园</option>");
+                $("#ddlBranchName").append("<option value='03701'>北京-西城-前门</option>");
+                $("#ddlBranchName").append("<option value='04801'>北京-西城-永定门</option>");
+                $("#ddlBranchName").append("<option value='02601'>北京-西城-华安</option>");
+                $("#ddlBranchName").append("<option value='11201'>北京-西城-陶然</option>");
+                $("#ddlBranchName").append("<option value='01501'>北京-西城-右安门</option>");
+                $("#ddlBranchName").append("<option value='02001'>北京-西城-复兴</option>");
+                $("#ddlBranchName").append("<option value='15001'>北京-西城-长安街</option>");
+                $("#ddlBranchName").append("<option value='18901'>北京-延庆-延庆</option>");
+                $("#ddlBranchName").append("<option value='11001'>北京-亦庄-经济技术开发区</option>");
+                $("#ddlBranchName").append("<option value='19241'>北京-昌平-宏福科技园</option>");
+                $("#ddlBranchName").append("<option value='12001'>北京-昌平-昌平</option>");
+                break;
+            case "上海":
+                $("#ddlBranchName").append("<option value='31091'>上海-上海-徐汇</option>");
+                $("#ddlBranchName").append("<option value='31021'>上海-上海-浦东</option>");
+                break;
+            case "广东":
+                $("#ddlBranchName").append("<option value='33001'>广东-深圳-分行营业部</option>");
+                $("#ddlBranchName").append("<option value='33011'>广东-深圳-龙岗</option>");
+                $("#ddlBranchName").append("<option value='33021'>广东-深圳-宝安</option>");
+                $("#ddlBranchName").append("<option value='33031'>广东-深圳-南山</option>");
+                $("#ddlBranchName").append("<option value='33041'>广东-深圳-香蜜</option>");
+                $("#ddlBranchName").append("<option value='33051'>广东-深圳-中心区</option>");
+                $("#ddlBranchName").append("<option value='33061'>广东-深圳-华侨城</option>");
+                $("#ddlBranchName").append("<option value='33071'>广东-深圳-龙华</option>");
+                $("#ddlBranchName").append("<option value='33081'>广东-深圳-罗湖</option>");
+                $("#ddlBranchName").append("<option value='33091'>广东-深圳-北京大厦</option>");
+                $("#ddlBranchName").append("<option value='33101'>广东-深圳-高新园</option>");
+                $("#ddlBranchName").append("<option value='33111'>广东-深圳-前海</option>");
+                $("#ddlBranchName").append("<option value='33121'>广东-深圳-软件园社区</option>");
+                $("#ddlBranchName").append("<option value='33131'>广东-深圳-梅林</option>");
+                break;
+            case "河北":
+                $("#ddlBranchName").append("<option value='39001'>河北-石家庄-分行营业部</option>");
+                $("#ddlBranchName").append("<option value='39011'>河北-石家庄-鹿泉</option>");
+                $("#ddlBranchName").append("<option value='39501'>河北-保定-分行营业部</option>");
+                $("#ddlBranchName").append("<option value='39511'>河北-涿州-分行</option>");
+                break;
+            case "湖南":
+                $("#ddlBranchName").append("<option value='35001'>湖南-长沙-分行营业部</option>");
+                $("#ddlBranchName").append("<option value='35011'>湖南-长沙-侯家塘</option>");
+                $("#ddlBranchName").append("<option value='35021'>湖南-长沙-曙光</option>");
+                $("#ddlBranchName").append("<option value='35031'>湖南-长沙-五一东路</option>");
+                $("#ddlBranchName").append("<option value='35041'>湖南-长沙-车站北路</option>");
+                $("#ddlBranchName").append("<option value='35061'>湖南-长沙-湘潭</option>");
+                $("#ddlBranchName").append("<option value='35071'>湖南-长沙-高桥</option>");
+                $("#ddlBranchName").append("<option value='35081'>湖南-长沙-麓谷</option>");
+                $("#ddlBranchName").append("<option value='35091'>湖南-长沙-万家丽路</option>");
+                $("#ddlBranchName").append("<option value='35101'>湖南-长沙-星沙</option>");
+                $("#ddlBranchName").append("<option value='35111'>湖南-长沙-宁乡</option>");
+                $("#ddlBranchName").append("<option value='35121'>湖南-长沙-枫林三路</option>");
+                $("#ddlBranchName").append("<option value='35001'>湖南-长沙-水电社区</option>");
+                $("#ddlBranchName").append("<option value='35001'>湖南-长沙-钰龙社区</option>");
+                $("#ddlBranchName").append("<option value='35001'>湖南-长沙-梓园社区</option>");
+                break;
+            case "江苏":
+                $("#ddlBranchName").append("<option value='36041'>江苏-南京-中山南路</option>");
+                break;
+            case "江西":
+                $("#ddlBranchName").append("<option value='38001'>江西-南昌-分行营业部</option>");
+                $("#ddlBranchName").append("<option value='38081'>江西-南昌-高新</option>");
+                $("#ddlBranchName").append("<option value='38061'>江西-南昌-新建</option>");
+                $("#ddlBranchName").append("<option value='38111'>江西-南昌-八一广场</option>");
+                $("#ddlBranchName").append("<option value='38011'>江西-南昌-红谷滩</option>");
+                $("#ddlBranchName").append("<option value='38301'>江西-九江-分行</option>");
+                $("#ddlBranchName").append("<option value='38091'>江西-南昌-抚河</option>");
+                $("#ddlBranchName").append("<option value='38131'>江西-南昌-万年青</option>");
+                $("#ddlBranchName").append("<option value='38021'>江西-南昌-南昌县</option>");
+                $("#ddlBranchName").append("<option value='38051'>江西-南昌-经开</option>");
+                $("#ddlBranchName").append("<option value='38041'>江西-南昌-西湖</option>");
+                $("#ddlBranchName").append("<option value='38071'>江西-南昌-青云谱</option>");
+                $("#ddlBranchName").append("<option value='38041'>江西-南昌-青山湖</option>");
+                break;
+            case "山东":
+                $("#ddlBranchName").append("<option value='37111'>山东-济南-山水泉城</option>");
+                $("#ddlBranchName").append("<option value='37201'>山东-聊城-分行</option>");
+                $("#ddlBranchName").append("<option value='37001'>山东-济南-分行营业部</option>");
+                $("#ddlBranchName").append("<option value='37041'>山东-济南-高新</option>");
+                $("#ddlBranchName").append("<option value='37081'>山东-济南-历城</option>");
+                $("#ddlBranchName").append("<option value='37101'>山东-济南-旅游路</option>");
+                $("#ddlBranchName").append("<option value='37011'>山东-济南-大明湖</option>");
+                $("#ddlBranchName").append("<option value='37031'>山东-济南-舜耕</option>");
+                $("#ddlBranchName").append("<option value='37021'>山东-济南-千佛山</option>");
+                $("#ddlBranchName").append("<option value='37051'>山东-济南-章丘</option>");
+                $("#ddlBranchName").append("<option value='37071'>山东-济南-槐荫</option>");
+                $("#ddlBranchName").append("<option value='37091'>山东-济南-市中</option>");
+                $("#ddlBranchName").append("<option value='37301'>山东-潍坊-分行</option>");
+                break;
+            case "陕西":
+                $("#ddlBranchName").append("<option value='32001'>陕西-西安-分行营业部</option>");
+                break;
+            case "浙江":
+                $("#ddlBranchName").append("<option value='34001'>浙江-杭州-分行营业部</option>");
+                $("#ddlBranchName").append("<option value='34011'>浙江-杭州-余杭</option>");
+                $("#ddlBranchName").append("<option value='34021'>浙江-杭州-萧山</option>");
+                $("#ddlBranchName").append("<option value='34031'>浙江-杭州-平海</option>");
+                $("#ddlBranchName").append("<option value='34041'>浙江-杭州-西溪</option>");
+                $("#ddlBranchName").append("<option value='34051'>浙江-杭州-钱江</option>");
+                $("#ddlBranchName").append("<option value='34061'>浙江-杭州-贴沙河</option>");
+                $("#ddlBranchName").append("<option value='34071'>浙江-杭州-滨江</option>");
+                $("#ddlBranchName").append("<option value='34091'>浙江-杭州-富阳</option>");
+                $("#ddlBranchName").append("<option value='34101'>浙江-绍兴-分行</option>");
+                $("#ddlBranchName").append("<option value='34111'>浙江-诸暨-分行</option>");
+                $("#ddlBranchName").append("<option value='34201'>浙江-衢州-分行</option>");
+                $("#ddlBranchName").append("<option value='34801'>浙江-杭州-江东</option>");
+                $("#ddlBranchName").append("<option value='34821'>浙江-杭州-运河</option>");
+                $("#ddlBranchName").append("<option value='34831'>浙江-杭州-中山</option>");
+                break;
+        }
+    }
+    function GetBeijingBankAddress(v) {
+        $.get("/Product/BranchBeijingAddress/" + v + "/?gmt=" + Math.random(), function (data) {
+            $("#lblBranchAddress").text(data);
+        });
+    }
+    function GetBranchCity(v) {
+        $("#ddlBranchCity").empty();
+        $.get("/Product/BranchCity/" + v + "/?gmt=" + Math.random(), function (data) {
+            var result = data;
+            if (result.indexOf(",") > 0) {
+                $("#ddlBranchCity").append("<option value=''>请选择...</option>");
+                var info = result.split(",");
+                for (var i = 0; i < info.length - 1; i++) {
+                    $("#ddlBranchCity").append("<option value='" + info[i] + "'>" + info[i] + "</option>");
+                }
+            }
+        });
+    }
+    function GetBranch(v) {
+        $("#ddlBranchName").empty();
+        $.get("/Product/BranchList/" + v + "/?gmt=" + Math.random(), function (data) {
+            var result = data;
+            var one;
+            if (result.indexOf(",") > 0) {
+                $("#ddlBranchName").append("<option value=''>请选择...</option>");
+                var info = result.split(",");
+                for (var i = 0; i < info.length - 1; i++) {
+                    var one = info[i].split("|");
+                    $("#ddlBranchName").append("<option value='" + one[0] + "'>" + one[1] + "</option>");
+                }
+            }
+        });
+    }
+    function GetBranchAddress(v) {
+        $.get("/Product/BranchAddress/" + v + "/?gmt=" + Math.random(), function (data) {
+            $("#lblBranchAddress").text(data);
+        });
+    }
+    function valid() {
+        var BranchName = $("#ddlBranchName").val();
+        var Merchant = $("#Merchant").val();
+
+        switch (Merchant.toLowerCase()) {
+            case "bj":
+            case "citicbuy":
+            case "citicsh":
+                if (BranchName == "" || BranchName == null) {
+                    alert("请选择协助办理的银行网点");
+                    return false;
+                }
+                break;
+        }
+    }
+    </script>
+}
+<header>
+    <h1>确认支付订单</h1>
+</header>
+<main>
+    <div class="info">联系人：<span class="username"></span></div>
+    <div class="info">总人数：<span class="renshu"></span></div>
+    <div class="info" id="pricetip" style="display: none;">支付总价：<span class="fontstyle">￥0 元</span></div>
+    <div class="bank">
+        <h2 id="lblBranch">请选择协助办理的银行网点：</h2>
+        <div id="pnlBranch">
+            <select id="ddlProvince" name="ddlProvince" style="width:6em; display:none;">
+                <option value="上海" selected="">上海</option>
+            </select>
+            <select id="ddlBranchCity" name="ddlBranchCity" onchange="GetBranch(this.value);"><option value="">请选择...</option><option value="北京">北京</option><option value="上海">上海</option><option value="广东">广东</option><option value="河北">河北</option><option value="湖南">湖南</option><option value="江苏">江苏</option><option value="江西">江西</option><option value="山东">山东</option><option value="陕西">陕西</option><option value="浙江">浙江</option></select>
+            <select id="ddlBranchName" name="ddlBranchName" onchange="GetBranchAddress(this.value);"></select>
+            <hr />
+            <div id="lblBranchAddress"></div>
+        </div>
+        
+    </div>
+</main>
+<footer>
+    <button type="button" class="btn btn-lg btn-success">确认预定</button>
+    <button type="button" class="btn btn-lg btn-default">放弃预定</button>
+</footer>
+<input type="hidden" id="VisaApplyID" name="VisaApplyID" value="WXGLHOR07894" />
+<input type="hidden" id="username" name="username" value="4654" />
+<input type="hidden" id="tel" name="tel" value="18331932663" />
+<input type="hidden" id="email" name="email" value="11@gg.com" />
+<input type="hidden" id="renshu" name="renshu" value="1" />
+<input type="hidden" id="zongjia" name="zongjia" value="0" />
+<input type="hidden" id="Merchant" name="Merchant" value="bj" />
+<input type="hidden" id="TsrName" name="TsrName" value="" />
+<input type="hidden" id="Country" name="Country" value="US_1" />

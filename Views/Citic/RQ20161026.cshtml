@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "日期";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/citic/themes/Timer/normalize3.0.2.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/citic/themes/Timer/style.css?v=7")" />
+    <link href="@Url.Content("~/Content/citic/themes/Timer/mobiscroll.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/citic/themes/Timer/mobiscroll_date.css")" rel="stylesheet" />
+    <style type="text/css">
+        #btn {
+            position:relative;
+            width: 100px;
+            height: 50px;
+            border-radius: 50px;
+            margin-top: 200px;
+            background-color: gray;
+        }
+        #btn .bar {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 50px;
+           height: 50px;
+           border-radius: 50%;
+           background: #ccc;
+           -webkit-transition: .2s; 
+           transition: .2s; 
+           cursor: pointer;
+        }
+    </style>
+
+}
+@section Js{
+    <script src="~/Content/scripts/Timer/mobiscroll_date.js" charset="gb2312"></script>
+    <script src="~/Content/scripts/Timer/mobiscroll.js"></script> 
+    <script type="text/javascript">
+        $(function () {
+            var onOff = true;
+
+            var currYear = (new Date()).getFullYear();
+            var opt = {};
+            opt.date = { preset: 'date' };
+            opt.datetime = { preset: 'datetime' };
+            opt.time = { preset: 'time' };
+            opt.default = {
+                theme: 'android-ics light', //皮肤样式
+                display: 'modal', //显示方式 
+                mode: 'scroller', //日期选择模式
+                dateFormat: 'yyyy-mm-dd',
+                lang: 'zh',
+                showNow: true,
+                nowText: "今天",
+                startYear: currYear - 50, //开始年份
+                endYear: currYear + 10 //结束年份
+            };
+
+            $("#USER_AGE").mobiscroll($.extend(opt['date'], opt['default']));
+
+            //按钮
+            $("#bar").click(function () {
+                if (onOff) {
+                    $(this).css({ "left": "50px" });
+                    $("#btn").css({ "background-color": "#0f0" });
+                    onOff = false;
+                    alert("开关已开");
+                } else {
+                    $(this).css({ "left": "0" });
+                    $("#btn").css({ "background-color": "gray" });
+                    onOff = true;
+                    alert("开关已关");
+                }
+            });
+
+        });
+    </script>
+
+}
+   
+        <input type="text" name="USER_AGE" id="USER_AGE" readonly class="input" placeholder="请填写你的出生日期" />
+        <div class="clear h10"></div>
+        <input type="submit" id="tj" class="submit" value="提交" />
+
+
+<div id="btn" class="btn">
+    <div id="bar" class="bar"></div>
+</div>

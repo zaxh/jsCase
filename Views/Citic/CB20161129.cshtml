@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "承保信息";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <script type="text/javascript" src="~/Content/scripts/jedate/jedate.js"></script>
+    <link href="@Url.Content("~/Content/citic/themes/CB20161129.css")" rel="Stylesheet" type="text/css" />
+    <style>
+        body {
+            background: #59bfa4;
+        }
+    </style>
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/CB20161122.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            jeDate({
+                dateCell: "#startDate",
+                format: "YYYY-MM-DD",
+                isinitVal: true,
+                isTime: true, //isClear:false,
+                minDate: "1900-01-01 00:00:00",
+                okfun: function (val) { alert(val) }
+            });
+            jeDate({
+                dateCell: "#endDate",
+                format: "YYYY-MM-DD",
+                isinitVal: true,
+                isTime: true, //isClear:false,
+                minDate: "1900-01-01 00:00:00",
+                okfun: function (val) { alert(val) }
+            });
+            $("#cancleCB").click(function () {
+                $("#CBModal").fadeOut();
+                /*$("body").eq(0).removeClass("mark");
+                $("form").eq(0).removeClass("mark");*/
+            });
+
+            document.forms[0].action = 'http://portal.evisa99.com/taikang/postapply';
+            document.forms[0].submit();
+
+        });
+        function post(dataPost) {
+            alert($(dataPost).html());
+        }
+        function receive(dataReceive) {
+            alert($(dataReceive).html());
+        }
+        function cb(dataCB) {
+            var dataCB = $(dataCB).attr("data").split("|");
+            /*$("body").eq(0).addClass("mark");
+            $("form").eq(0).addClass("mark");*/
+            $("#CBModal").fadeIn();
+            var cb = {
+                "requestType": "2",
+                "requestId": dataCB[0],
+                "proposalNo": dataCB[2],
+                "comboId": "1117A00001",
+                "fromId": "61725",
+                "payMoney": dataCB[1]
+            };
+            var cbStr = JSON.stringify(cb, null, 4); 
+            var jsondata = cbStr.replace(/\n|\s/g, '');
+            $("#data").val(escape(jsondata));
+        }
+    </script>
+}
+<div class="wrap">
+    <div class="header">
+        <h1>承保信息表</h1>
+        <span>开始时间：</span><input type="text" class="date" id="startDate" readonly="readonly">
+        <span>结束时间：</span><input type="text" class="date" id="endDate" readonly="readonly">
+        <input type="checkbox" name="check" value=" " />
+    </div>
+    <div class="main">
+        @Html.Raw( ViewBag.list )
+        <input type="hidden" name="jsondata" id="data" value="" />
+    </div>
+    <!-- 承保模态框（Modal） -->
+    <div class="modal fade" id="CBModal">
+        <div class="modal-header">
+            <h2>承保信息确认</h2>
+        </div>
+        <div class="modal-content">
+            <p>您确认要进行承保吗？</p>
+            <input type="button" name="cancle" id="cancleCB" value="取消" />
+            <input type="submit" name="submit" value="提交" />
+        </div>
+    </div>
+
+</div>

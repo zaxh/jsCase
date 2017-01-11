@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "签证国家列表";
+    Layout = "~/Views/Shared/_QZLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/bootstrap.min.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/details.css")" rel="Stylesheet" type="text/css" />
+
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/details.js"></script>
+}
+<div class="container-wrap">
+    <header>
+        <h2>美国十年多次往返签证</h2>
+        <p class="detail_top_price">
+            <span class="price_nb" id="price_nb">接受预定</span>
+        </p>
+        <div class="condition">
+            <span>需面试</span><span>电子材料</span><span>纸质材料</span><span>需采集指纹</span>
+        </div>
+    </header>
+    <ul class="description">
+        <li class="desc-wrap col-xs-4"><p class="title">有效期</p><p class="con">10年</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">入境次数</p><p class="con">多次</p></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#visaType"><p class="title">签证类型</p><p class="con">B1/B2签证</p><em></em></a></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#handlingTime"><p class="title">办理时间</p><p class="con">收齐资料后的14-20个工作日</p><em></em></a></li>
+        <li class="desc-wrap col-xs-4"><p class="title">停留时间</p><p class="con">180天</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">受理领区</p><p class="con">全国</p></li>
+    </ul>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="visaType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">B1/B2签证</h4>
+                </div>
+                <div class="modal-body">B1签证颁发给赴美从事短期商务活动的申请人，活动包括协商签订合同、参加展览或会议、短期培训或与供应商或客户洽谈业务等。B2签证颁发给赴美旅游的申请人，包括观光、探亲访友及医疗治病等。</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="handlingTime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel1">办理时间</h4>
+                </div>
+                <div class="modal-body">收齐资料后的14-20个工作日</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 模态框（Modal）结束 -->
+    <div class="remarks">
+        <p>注：以上含签证费，因签证费会受汇率浮动影响，最终以大使馆实际收费标准为准</p>
+    </div>
+
+    <!-- process start -->
+    <div class="process-wrap">
+        <ul class="process-title">
+            <li class="pro-title-item active">基本信息</li>
+            <li class="pro-title-item">申请资料</li>
+            <li class="pro-title-item">办理流程</li>
+            <li class="pro-title-item">退订条款</li>
+        </ul>
+        <ul class="process-content">
+            <li class="pro-con-item show">
+                <div class="pro-con-title"><h3>基本信息</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4>服务内容</h4>
+                        <p>1、	提供给客户线上中文填表，代填领馆正式申请表 </p>
+                        <p>2、	为客户提供材料清单，对客户全部资料进行翻译整理</p>
+                        <p>3、	提供中英文在职和在校证明模板</p>
+                        <p>4、	远程电话服务</p>
+                        <p>5、	签证代传递及代取，代付签证费等服务</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>受理范围</h4>
+                        <p>1、中国大陆因私护照</p>
+                        <p> 2、符合以下条件的可以选择美国代传递免面试产品：
+                        <p class="child">1）申请人持有有效的美国签证或上一张美国签证过期时间不超过48个月（签证须在中国大陆签发），此次申请签证类型与上次相同，有过期的美国签证页在护照上（如护照为因公护照，需包含清晰的出入境三个章），之前获得签证时的年龄必须在14岁（含）以上，且必须采集过十指指纹，距离上一次美领馆行政审核（签证页上有“clearance received”注释）未超过12个月，同时最近一次未被美领馆拒签过，以上条件必须同时满足</p>
+                        <p class="child">2）14周岁以下或80周岁（含）以上的申请人，如从未被拒签过，可申请该签证</p>
+                        <p>如不符合以上条件，则需要本人前往美国驻华大使馆进行签证面试</p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>申请资料</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4>1) 护照原件,如最近一次美国签证在旧护照上,旧护照也需要。</h4>
+                    </div>
+                    <div class="infoBox">
+                        <h4>2) 一张签证照片,必须和电子版照片一致。</h4>
+                    </div>
+                    <div class="infoBox">
+                        <h4>3) 14 岁以下儿童需提供出生证明和父母双方的护照首页及美国签证页的复印件。</h4>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>办理流程</h3></div>
+                <div class="pro-con-con">
+                    <div class="proBox">
+                        <div class="circle">1</div>
+                        <h4>选择适合的签证递交方式</h4>
+                        <p>
+                            如符合以下条件之一，即可办理美国免面试类型签证（代传递业务）：
+                        </p>
+                        <ul>
+                            <li>a、之前美签到期日距此次申请日期不超过48个月、此次申请的签证类型与上次相同，有过期的美国签证页所在的旧护照，曾提供过十指指纹，未被美领馆行政审核过且签证页上无“clearance received”注释</li>
+                            <li>b、14岁以下或80岁（含）以上的申请者</li>
+                        </ul>
+                        <p>如不符合以上条件，则需要本人前往美国驻华大使馆进行签证面试</p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">2</div>
+                        <h4>准备并递送签证资料</h4>
+                        <p>
+                            客户完成在线信息填写并选择快递递交签证资料
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">3</div>
+                        <h4>审核并制作资料</h4>
+                        <p>
+                            后台组收到资料后三个工作日内完成审核和整理，如有任何缺少项会告知客户补充或修改
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">4</div>
+                        <h4>送签</h4>
+                        <p>
+                            由专业送签人员将客户申请资料代传递给美国大使馆
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">5</div>
+                        <h4>使馆受理</h4>
+                        <p>
+                            免面试签证的审理时间通常为收齐资料后的14-20个工作日（若遇签证旺季、节假日、使馆设备故障等因素，审理时间可能会延长）
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">6</div>
+                        <h4>出签，核对信息</h4>
+                        <p>
+                            为了确保本人签收，出签后按照客户在信息采集表中提供的地址采用顺丰快递（到付）的形式将护照返还，请认真核对签证页信息是否有误（护照号、姓名、签证有效期、出生年月等）
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>退订条款</h3></div>
+                <div class="pro-con-con">
+                    <p class="refund">近期将推出签证拒签费用损失补贴服务，最高补贴1400元/单，敬请期待。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="button">
+    <div class="back"><a href="QZ20161123">&lt;</a></div>
+    <div class="appointment"><a href="#appointment" data-toggle="modal">开始预约</a></div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="appointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">预订信息
+                    <span id="errorr"></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form name="form" method="get" action="statement" id="form">
+                    <div class="form-group">
+                        <label for="name">联系人姓名</label>
+                        <input type="text" class="form-control" name="username" placeholder="请输入姓名" maxlength="20" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">联系人手机</label>
+                        <input type="tel" name="tel" class="form-control" placeholder="联系人手机" maxlength="11" id="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">联系人邮箱</label>
+                        <input type="email" name="email" class="form-control" placeholder="请输入邮箱" maxlength="50" id="email">
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label style="padding-right:20px;">单价</label>
+                        <span id="unitPrice">0</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">人数</label>
+                        <select name="renshu" id="selectnum" onchange="show(this.value)" class="btn btn-default dropdown-toggle btn-sm">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label style="padding-right:20px;">总价</label>
+                        <span id="selectPrice" style="font-size:25px;color:#ff6a00;">0</span>元
+                    </div>
+                    <input type="hidden" name="Country" id="Country" value="US_1">
+                    <input type="hidden" name="Merchant" id="Merchant" value="bj">
+                    <input type="hidden" name="TsrName" id="TsrName">
+                    <input type="hidden" name="zongjia" id="zongjia" value="NaN">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success pull-left" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

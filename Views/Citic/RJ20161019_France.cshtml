@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "中信全球签";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/photoswipe.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/RJ20161019.css")" rel="Stylesheet" type="text/css" />
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/simple-inheritance.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/code-photoswipe-jQuery-1.0.19.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#wrap a").photoSwipe({
+
+                captionAndToolbarAutoHideDelay: 0,
+                captionAndToolbarOpacity: 1
+            });
+        })
+    </script>
+}
+<div id="wrap">
+    <h1>法国</h1>
+    <div class="card">
+        <span>入境卡</span>
+        <div class="img">
+            <a href="~/Content/citic/images/RJ20161019/card/france-enter.jpg"><img src="~/Content/citic/images/RJ20161019/card/france-enter.jpg" alt="法国入境卡" /></a>
+        </div>
+        <span>【点击图片放大查看】</span>
+    </div>
+</div>

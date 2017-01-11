@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "中信全球签";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/scripts/skin/layer.css")">
+    <link href="@Url.Content("~/Content/citic/themes/CS20161018.css")" rel="Stylesheet" type="text/css" />
+
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/layer.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/CS20161018.js"></script>
+
+}
+<div id="wrap">
+    <div class="container">
+        <div class="answer">
+            <p class="content">1、  您的户口所在地？</p>
+            <div class="option">
+                <label for="o_one"><input id="o_one" name="hk" type="radio" value="北京" score="50">北京</label>
+                <label for="o_two"><input id="o_two" name="hk" type="radio" value="上海" score="50">上海</label>
+                <label for="o_three"><input id="o_three" name="hk" type="radio" value="长期居住地为北京领区" score="6">长期居住地为北京领区</label>
+                <label for="o_four"><input id="o_four" name="hk" type="radio" value="长期居住地为上海领区" score="0">长期居住地为上海领区</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">2、	您的婚姻状态？</p>
+            <div class="option">
+                <label for="t_one"><input id="t_one" name="marry" type="radio" value="离异" score="1">离异</label>
+                <label for="t_two"><input id="t_two" name="marry" type="radio" value="未婚" score="0">未婚</label>
+                <label for="t_three"><input id="t_three" name="marry" type="radio" value="丧偶" score="5">丧偶</label>
+                <label for="t_four"><input id="t_four" name="marry" type="radio" value="已婚" score="10">已婚</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">3、	您的年收入（税前）？</p>
+            <div class="option">
+                <label for="th_one"><input id="th_one" name="nsr" type="radio" value="50万以下" score="-50">50万以下</label>
+                <label for="th_two"><input id="th_two" name="nsr" type="radio" value="50万以上" score="10">50万以上</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">4、	您是否曾经被拒签，距被拒签日期？</p>
+            <div class="option">
+                <label for="f_one"><input id="f_one" name="jq" type="radio" value="半年内" score="-10">半年内</label>
+                <label for="f_two"><input id="f_two" name="jq" type="radio" value="一年内" score="0">一年内</label>
+                <label for="f_three"><input id="f_three" name="jq" type="radio" value="一年以上" score="1">一年以上</label>
+                <label for="f_four"><input id="f_four" name="jq" type="radio" value="未被拒签" score="10">未被拒签</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">5、	您是否曾经在境外非法滞留？</p>
+            <div class="option">
+                <label for="fi_one"><input id="fi_one" name="ffzl" type="radio" value="有" score="-50">有</label>
+                <label for="fi_two"><input id="fi_two" name="ffzl" type="radio" value="没有" score="10">没有</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">6、	您现在是否拥有稳定工作？</p>
+            <div class="option">
+                <label for="s_one"><input id="s_one" name="job" type="radio" value="有" score="10">有</label>
+                <label for="s_two"><input id="s_two" name="job" type="radio" value="没有" score="0">没有</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">7、  您的职业类型为？</p>
+            <div class="option">
+                <label for="se_one"><input id="se_one" name="occu" type="radio" value="自由职业、无业" score="0">自由职业、无业</label>
+                <label for="se_two"><input id="se_two" name="occu" type="radio" value="个体户" score="0">个体户</label>
+                <label for="se_three"><input id="se_three" name="occu" type="radio" value="中小型企业" score="5">中小型企业</label>
+                <label for="se_four"><input id="se_four" name="occu" type="radio" value="大型企业" score="10">大型企业</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">8、  您的银行存款（包含有价证券）？</p>
+            <div class="option">
+                <label for="e_one"><input id="e_one" name="deposit" type="radio" value="50万以下" score="5">50万以下</label>
+                <label for="e_two"><input id="e_two" name="deposit" type="radio" value="50万-100万" score="10">50万-100万</label>
+                <label for="e_three"><input id="e_three" name="deposit" type="radio" value="100万-200万" score="10">100万-200万</label>
+                <label for="e_four"><input id="e_four" name="deposit" type="radio" value="200万以上" score="10">200万以上</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">9、  您的房产所在地？</p>
+            <div class="option">
+                <label for="n_one"><input id="n_one" name="property" type="radio" value="北、上、广、深" score="10">北、上、广、深</label>
+                <label for="n_two"><input id="n_two" name="property" type="radio" value="其他城市100平以上" score="8">其他城市100平以上</label>
+                <label for="n_three"><input id="n_three" name="property" type="radio" value="其他城市100平以下" score="5">其他城市100平以下</label>
+                <label for="n_four"><input id="n_four" name="property" type="radio" value="无" score="0">无</label>
+            </div>
+        </div>
+        <div class="answer">
+            <p class="content">10、  您是否曾经前往美国、加拿大、英国、申根国家、日本、澳大利亚中的任一国家？</p>
+            <div class="option">
+                <label for="ten_one"><input id="ten_one" name="goto" type="radio" value="有" score="10">有</label>
+                <label for="ten_two"><input id="ten_two" name="goto" type="radio" value="无" score="0">无</label>
+            </div>
+        </div>
+        <div class="submit">
+            <input type="button" value="提交">
+        </div>
+    </div>
+</div>

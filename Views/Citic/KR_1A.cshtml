@@ -1,0 +1,238 @@
+﻿@{
+    ViewBag.Title = "签证国家列表";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/bootstrap.min.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/details.css")" rel="Stylesheet" type="text/css" />
+
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/details.js"></script>
+}
+<div class="container-wrap">
+    <header style="background: #15488b;">
+        <h2>韩国五年多次往返签证</h2>
+        <p>接受预定</p>
+        <div class="condition">
+            <span>免面试</span><span>纸质材料</span><span>无需采集指纹</span>
+        </div>
+    </header>
+    <ul class="description">
+        <li class="desc-wrap col-xs-4"><p class="title">有效期</p><p class="con">最长五年</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">入境次数</p><p class="con">多次</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">签证类型</p><p class="con">个人旅游</p></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#handlingTime"><p class="title">办理时间</p><p class="con">资料收齐后的10个工作日 </p><em></em></a></li>
+        <li class="desc-wrap col-xs-4"><p class="title">停留时间</p><p class="con">30天以内</p></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#deliveryArea"><p class="title">受理领区</p><p class="con">北京/上海</p><em></em></a></li>
+    </ul>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="deliveryArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">受理领区</h4>
+                </div>
+                <div class="modal-body">
+                    <p>北京领区：北京、天津、河北、山西、内蒙古、新疆、西藏、陕西 </p>
+                    <p>上海领区：上海、江苏、浙江、安徽 </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="handlingTime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel1">办理时间</h4>
+                </div>
+                <div class="modal-body">资料收齐后的10个工作日 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 模态框（Modal）结束 -->
+    <div class="remarks">
+        <p>含签证费，因签证费会受汇率浮动影响，最终以大使馆实际收费标准为准</p>
+    </div>
+
+    <!-- process start -->
+    <div class="process-wrap">
+        <ul class="process-title">
+            <li class="pro-title-item active">基本信息</li>
+            <li class="pro-title-item">申请资料</li>
+            <li class="pro-title-item">办理流程</li>
+            <li class="pro-title-item">退订条款</li>
+        </ul>
+        <ul class="process-content">
+            <li class="pro-con-item show">
+                <div class="pro-con-title"><h3>基本信息</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4>服务内容</h4>
+                        <p>1、提供给客户中文填表，代填领馆正式申请表 </p>
+                        <p>2、为客户提供材料清单，对客户全部资料进行翻译整理</p>
+                        <p>3、提供在职和在校证明等模板</p>
+                        <p>4、远程电话服务</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>受理范围</h4>
+                        <p>1、	中国大陆因私护照</p>
+                        <p>2、 申请人必须是长期居住并工作在北京和上海领区（北京领区划分：北京、天津、河北、山西、内蒙古、新疆、西藏、陕西；上海领区划分：上海、江苏、浙江、安徽）</p>
+                        <p>3、	北京领区要求申请人必须有个人旅游的访韩记录（有北京身份证可不需要）</p>
+                        <p>4、	户籍为下列地区者，暂不接受签证申请：连云港，南通，盐城</p>
+                        <p>5、	申请人6个月内没有韩国拒签记录</p>
+                        <p>6、 不接受18岁以下学生儿童单独申请</p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>申请资料</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4> 一、身份证明</h4>
+                        <p>1.	护照原件 </p>
+                        <p>2.	照片2张</p>
+                        <p>3.	身份证原件</p>
+                        <p>4.	户口本全本复印件</p>
+                        <p>5.	暂住证或工作居住证原件</p>
+                        <p>6.	结婚证复印件</p>
+                        <p>7.	出生证明复印件</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>二、资产证明</h4>
+                        <p>1.	一年社保记录（北京领区要求提供） </p>
+                        <p>2.	个人完税证明原件（上海领区要求提供）</p>
+                        <p>3.	银行流水对账单</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>三、工作证明（北京领区需提供）</h4>
+                        <p>1.	在职证明 </p>
+                        <p>2.	公司营业执照复印件加盖公章</p>
+                        <p>3.	退休证复印件或退休证明原件</p>
+                        <p>4.	学生证复印件或在校证明原件</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>四、个人信息表</h4>
+                    </div>
+                    <div class="infoBox">
+                        <h4>简易资料（符合以下条件者仅需提供建议材料：）</h4>
+                        <p>北京领区：有北京身份证的申请者</p>
+                        <p>上海领区：户籍所在地为北京、上海、广州、深圳的申请者</p>
+                        <p>1.	护照原件</p>
+                        <p>2.	照片2张</p>
+                        <p>3.	身份证原件（二代身份证，出签后随护照寄回）</p>
+                        <p>4.	韩国五年签证信息采集表</p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>办理流程</h3></div>
+                <div class="pro-con-con">
+                    <div class="proBox">
+                        <div class="circle">1</div>
+                        <h4>初步沟通</h4>
+                        <p>
+                            在客户报名成功后请到办理支行缴纳签证费用，将有客服人员与客户进行初步沟通，确认信息以及协助客户准备签证递送的资料
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">2</div>
+                        <h4>准备并递送签证资料</h4>
+                        <p>
+                            客户选择快递递交签证资料
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">3</div>
+                        <h4>审核并制作资料</h4>
+                        <p>
+                            后台组收到您的资料后三个工作日内完成审核和整理，并致电您告知资料已收讫，如有任何缺少项会告知补充或修改。
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">4</div>
+                        <h4>送签</h4>
+                        <p>
+                            由专业送签人员将您的申请资料递交韩国使馆，使馆在审查资料过程中有可能会电话与您核实相关内容。
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">5</div>
+                        <h4>出签并核对信息</h4>
+                        <p>
+                            出签后为了确保您本人可以收到护照，我们将按照您填表时所填的接收地址，以快递（到付）的形式将护照返还给您。
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>退订条款</h3></div>
+                <div class="pro-con-con">
+                    <p class="refund">近期将推出签证拒签费用损失补贴服务，最高补贴1400元/单，敬请期待。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="button">
+    <div class="back"><a href="QZ20161123">&lt;</a></div>
+    <div class="appointment"><a href="#appointment" data-toggle="modal">开始预约</a></div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="appointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">预订信息</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form" method="get" action="statement" id="form">
+                    <div class="form-group">
+                        <label for="name">联系人姓名</label>
+                        <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">联系人手机</label>
+                        <input type="text" class="form-control" id="mobile" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">联系人邮箱</label>
+                        <input type="text" class="form-control" id="mail" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">人数</label>
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "中信e签证活动推广页面";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/WX20160929.css")" rel="Stylesheet" type="text/css" />
+    <style type="text/css">
+        body {
+            background-color: aliceblue;
+        }
+
+        .container {
+            background-color: white;
+        }
+    </style>
+}
+@section Js{
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () { GetBranchCity(); })
+        function GetBranchCity() {
+            $.get("/Citic/BranchList/?gmt=" + Math.random(), function (data) {
+                var result = data;
+                if (result.indexOf(",") > 0) {
+                    $("#ddlBranchList").append("<option value=''>请选择...</option>");
+                    var info = result.split(",");
+                    for (var i = 0; i < info.length - 1; i++) {
+                        $("#ddlBranchList").append("<option value='" + info[i] + "'>" + info[i] + "</option>");
+                    }
+                }
+            });
+        }
+        function GetBranch(v) {
+            $("#ddlBranchName").empty();
+            $.get("/Citic/BranchName/" + v + "/?gmt=" + Math.random(), function (data) {
+                var result = data;
+                var one;
+                if (result.indexOf(",") > 0) {
+                    $("#ddlBranchName").append("<option value=''>请选择...</option>");
+                    var info = result.split(",");
+                    for (var i = 0; i < info.length - 1; i++) {
+                        var one = info[i].split("|");
+                        $("#ddlBranchName").append("<option value='" + one[0] + "'>" + one[1] + "</option>");
+                    }
+                }
+            });
+        }
+        function valid() {
+            var BranchName = $("#ddlBranchName").val();
+            if (BranchName == "" || BranchName == null) {
+                alert("请选择协助办理的银行网点");
+                return false;
+            }
+        }
+    </script>
+}
+<div id="wrap">
+    <div class="header">
+        <h1 class="title">请选择您的支行</h1>
+    </div>
+    <div class="maim">
+        <div class="container">
+            <p class="con-content">
+                <h3>活动名：@ViewBag.Subject</h3>
+                <hr />
+                <select id="ddlBranchList" name="ddlBranchList" style="width:25%;" onchange="GetBranch(this.value);"></select>
+                <select id="ddlBranchName" name="ddlBranchName" style="width:45%;"></select>
+            </p>
+            <p><input type="submit" value="查看活动页面" onclick="return valid();" /></p>
+            <hr />
+            <p class="con-content">
+                用微信扫描上方二维码，显示出推广内容页后，点击右上方“分享到朋友圈”，“发送给朋友”，”复制链接“进行推广
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "中信全球签";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <style type="text/css">
+        html{
+            font-family: "Helvetica Neue",Helvetica,sans-serif;
+            /*font-size:62.5%;*/
+            /*谷歌浏览器最小字体12px*/
+            -webkit-text-size-adjust: 100%;/*100%,none 关闭字体大小自动调整功能*/
+            /*a标签及拥有 :active 伪类的元素去除高亮显示的效果*/
+            -webkit-tap-highlight-color: transparent;
+            /*禁止文本被选中*/
+            -webkit-user-select: none;
+        }
+        body{
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;/*开启mobile网页快速滚动和回弹的效果*/
+            overflow-scrolling: touch;
+        }
+        #wrap{
+            width:100%;
+            max-width: 640px;
+            min-width: 320px;
+            margin: 0 auto;
+            background: url("../../Content/citic/images/RJ20161019/zbg.png") no-repeat;
+            background-size: 100% 100%;
+            padding-bottom: 10px;
+        }
+        #wrap h1 {
+            width: 100%;
+            padding-right:10px;
+            text-align: right;
+            height: 120px;
+            line-height: 120px;
+            font-family: "Microsoft YaHei";
+            color: #fff;
+        }
+        #wrap .container {
+           width:100%;
+           margin-top:50px; 
+        }
+        #wrap ul.list{
+            position: relative;
+            width:85%;
+            overflow: hidden;
+            margin:0 auto 10px;
+            background: url("../../Content/citic/images/RJ20161019/ulbg.png") no-repeat;
+            background-size: 100% 100%;
+            padding-top: 35px;
+        }
+        #wrap ul.list li.item {
+            position: absolute;
+            top: -5px;
+            left: 0px;
+            width:100%;
+            line-height: 30px;
+            margin-bottom: 10px;
+            font-family: "Microsoft YaHei";
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+        #wrap ul.list li.list-items{
+        width:25%;
+        float: left;
+        margin-bottom: 10px;
+        }
+        #wrap ul.list li.list-items a{
+            display: block;
+            color: #000;
+            text-align: center;
+        }
+        #wrap ul.list li.list-items a>img{
+            width: 95%;
+            height:95%;
+            margin-bottom:-4px;
+        }
+        #wrap ul.list li.list-items a > span {
+            display: block;
+            width:95%;
+            height:20px;
+            line-height:20px;
+            background: #ff6a00;
+            color: #fff;
+            text-align:center;
+            margin:0 auto;
+            font-size:12px;
+        }
+    </style>
+}
+@section Js{
+    <script type="text/javascript">
+    </script>
+}
+<div id="wrap">
+    <h1>各国出入境卡</h1>
+    <div class="container">
+        <ul class="list">
+            <li class="item">A</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Argentina"><img src="~/Content/citic/images/RJ20161019/agenting.png" alt="阿根廷"><span>阿根廷</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Egypt"><img src="~/Content/citic/images/RJ20161019/aiji.png" alt="埃及"><span>埃及</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Australia"><img src="~/Content/citic/images/RJ20161019/australia.png" alt="澳大利亚"><span>澳大利亚</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">F</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Fiji"><img src="~/Content/citic/images/RJ20161019/feiji.png" alt="斐济"><span>斐济</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_France"><img src="~/Content/citic/images/RJ20161019/france.png" alt="法国"><span>法国</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">H</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Korea"><img src="~/Content/citic/images/RJ20161019/korea.png" alt="韩国"><span>韩国</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">K</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Kenya"><img src="~/Content/citic/images/RJ20161019/kenniya.png" alt="肯尼亚"><span>肯尼亚</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">L</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Laos"><img src="~/Content/citic/images/RJ20161019/laoguo.png" alt="老挝"><span>老挝</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">M</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Maldives"><img src="~/Content/citic/images/RJ20161019/maerdaifu.png" alt="马尔代夫"><span>马尔代夫</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Malaysia"><img src="~/Content/citic/images/RJ20161019/malaixiya.png" alt="马来西亚"><span>马来西亚</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Mauritius"><img src="~/Content/citic/images/RJ20161019/maoliqiusi.png" alt="毛里求斯"><span>毛里求斯</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_US"><img src="~/Content/citic/images/RJ20161019/us.png" alt="美国"><span>美国</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">N</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_SouthAfrica"><img src="~/Content/citic/images/RJ20161019/nanfei.png" alt="南非"><span>南非</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">R</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Japan"><img src="~/Content/citic/images/RJ20161019/japan.png" alt="日本"><span>日本</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">T</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Thailand"><img src="~/Content/citic/images/RJ20161019/taiguo.png" alt="泰国"><span>泰国</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">W</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Venezuela"><img src="~/Content/citic/images/RJ20161019/weineiruila.png" alt="委内瑞拉"><span>委内瑞拉</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">X</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_NewZealand"><img src="~/Content/citic/images/RJ20161019/newsland.png" alt="新西兰"><span>新西兰</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Singapore"><img src="~/Content/citic/images/RJ20161019/Singapore.png" alt="新加坡"><span>新加坡</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Thailand"><img src="~/Content/citic/images/RJ20161019/taiguo.png" alt="泰国"><span>泰国</span></a></li>
+        </ul>
+        <ul class="list">
+            <li class="item">Y</li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Britain"><img src="~/Content/citic/images/RJ20161019/britain.png" alt="英国"><span>英国</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_India"><img src="~/Content/citic/images/RJ20161019/yindu.png" alt="印度"><span>印度</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Indonesia"><img src="~/Content/citic/images/RJ20161019/yindunixiya.png" alt="印度尼西亚"><span>印度尼西亚</span></a></li>
+            <li class="list-items"><a href="~/Citic/RJ20161019_Vietnam"><img src="~/Content/citic/images/RJ20161019/yuenan.png" alt="越南"><span>越南</span></a></li>
+        </ul>
+    </div>
+    
+</div>

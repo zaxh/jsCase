@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "签证国家列表";
+    Layout = "~/Views/Shared/_CiticLayout.cshtml";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/citic/themes/bootstrap.min.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/reset.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/citic/themes/details.css")" rel="Stylesheet" type="text/css" />
+
+}
+@section Js{
+    <script type="text/javascript" src="~/Content/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/details.js"></script>
+}
+
+<div class="container-wrap">
+    <header>
+        <h2>美国十年多次往返签证</h2>
+        <p>接受预定</p>
+        <div class="condition">
+            <span>需面试</span><span>电子材料</span><span>需采集指纹</span>
+        </div>
+    </header>
+    <ul class="description">
+        <li class="desc-wrap col-xs-4"><p class="title">有效期</p><p class="con">10年</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">入境次数</p><p class="con">多次</p></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#visaType"><p class="title">签证类型</p><p class="con">B1/B2签证</p><em></em></a></li>
+        <li class="desc-wrap col-xs-4"><a data-toggle="modal" href="#handlingTime"><p class="title">办理时间</p><p class="con">个人信息提交后的3个工作日完成材料处理并预约面试时间</p><em></em></a></li>
+        <li class="desc-wrap col-xs-4"><p class="title">停留时间</p><p class="con">180天</p></li>
+        <li class="desc-wrap col-xs-4"><p class="title">受理领区</p><p class="con">全国</p></li>
+    </ul>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="visaType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">B1/B2签证</h4>
+                </div>
+                <div class="modal-body">B1签证颁发给赴美从事短期商务活动的申请人，活动包括协商签订合同、参加展览或会议、短期培训或与供应商或客户洽谈业务等。B2签证颁发给赴美旅游的申请人，包括观光、探亲访友及医疗治病等。</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="handlingTime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel1">办理时间</h4>
+                </div>
+                <div class="modal-body">个人信息提交后的3个工作日完成材料处理并预约面试时间，参加面试后的5个工作日左右出签</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 模态框（Modal）结束 -->
+    <div class="remarks">
+        <p>注：以上含签证费，因签证费会受汇率浮动影响，最终以大使馆实际收费标准为准</p>
+    </div>
+
+    <!-- process start -->
+    <div class="process-wrap">
+        <ul class="process-title">
+            <li class="pro-title-item active">基本信息</li>
+            <li class="pro-title-item">申请资料</li>
+            <li class="pro-title-item">办理流程</li>
+            <li class="pro-title-item">退订条款</li>
+        </ul>
+        <ul class="process-content">
+            <li class="pro-con-item show">
+                <div class="pro-con-title"><h3>基本信息</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4>服务内容</h4>
+                        <p>1、	提供给客户线上中文填表，代填领馆正式申请表 </p>
+                        <p>2、	为客户提供支持性材料清单</p>
+                        <p>3、	提供中英文在职和在校证明模板</p>
+                        <p>4、	代付签证费、代预约面试时间</p>
+                        <p>5、	远程电话面试辅导等服务</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>受理范围</h4>
+                        <p>中国大陆因私护照</p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>申请资料</h3></div>
+                <div class="pro-con-con">
+                    <div class="infoBox">
+                        <h4>一、个人证件类（原件）</h4>
+                        <p>1、护照 </p>
+                        <p>2、身份证、结婚证、全家户口本</p>
+                        <p>3、学生提供在校证明或学生证</p>
+                        <p>4、儿童出生证明</p>
+                        <p>5、毕业证书、各种职业证书和获奖证书</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>二、工作证明类</h4>
+                        <p>1、  工作证或工作名片 </p>
+                        <p>2、  营业执照（副本）或组织机构代码证复印件</p>
+                        <p>3、  单位开具的在职证明</p>
+                        <p>4、  如申请人已退休，需提供退休证或单位开局的退休证明</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>三、资产收入类</h4>
+                        <p>1、  银行卡1年对账单 </p>
+                        <p>2、  存折、存单、有价证券、基金或股票交割单</p>
+                        <p>3、  自己或配偶的房产证原件、汽车行驶证</p>
+                        <p>4、  个人所得税纳税证明</p>
+                        <p>5、  其他资产证明</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>四、照片类</h4>
+                        <p>1、  全家福照片</p>
+                        <p>2、  在国外拍摄的背景为当地标志性建筑的本人纪念照（如有最好提供）</p>
+                    </div>
+                    <div class="infoBox">
+                        <h4>注：以上材料由申请人本人携带，于面试当天根据需要展示给面试官</h4>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>办理流程</h3></div>
+                <div class="pro-con-con">
+                    <div class="proBox">
+                        <div class="circle">1</div>
+                        <h4>准备并提交预约资料</h4>
+                        <p>
+                            在客户报名成功后请到办理支行缴纳签证费用，将有客服人员与客户进行初步沟通，确认基本信息后将生成“e签证”密码，客户凭密码登录“e签证”网站在线填写中文表格并提交资料
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">2</div>
+                        <h4>审核并制作资料</h4>
+                        <p>
+                            后台组收到客户资料后，一个工作日内完成初步评审，评审通过后将正式进入资料制作过程，在此过程将完成DS-160确认页生成以及预约面试时间
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">3</div>
+                        <h4>接受辅导并参加面试</h4>
+                        <p>
+                            有专业人员致电客户进行面试辅导，指导申请者面签时需要注意的事项，减少签证障碍，提高签证通过率
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">4</div>
+                        <h4>使馆受理</h4>
+                        <p>
+                            面试签证审理时间通常为面试后3-5个工作日
+                        </p>
+                    </div>
+                    <div class="proBox">
+                        <div class="circle">5</div>
+                        <h4>出签，核对信息</h4>
+                        <p>
+                            护照将根据客户在填表时选择的方式返回，收到出签护照后请认真核对签证页信息是否有误（护照号、姓名、签证有效期、出生年月等）
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="pro-con-item ">
+                <div class="pro-con-title"><h3>退订条款</h3></div>
+                <div class="pro-con-con">
+                    <p class="refund">近期将推出签证拒签费用损失补贴服务，最高补贴1400元/单，敬请期待。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="button">
+    <div class="back"><a href="QZ20161123">&lt;</a></div>
+    <div class="appointment"><a href="#appointment" data-toggle="modal">开始预约</a></div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="appointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">预订信息</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form" method="get" action="statement" id="form">
+                    <div class="form-group">
+                        <label for="name">联系人姓名</label>
+                        <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">联系人手机</label>
+                        <input type="text" class="form-control" id="mobile" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">联系人邮箱</label>
+                        <input type="text" class="form-control" id="mail" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">人数</label>
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
