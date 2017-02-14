@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>波浪下落红方块</title>
+    <style>
+        .div1{position:absolute; top:50px; width:100px; height:100px; background:red;}
+    </style>
+</head>
+<body>
+<input id="bottom" type="button" value="下落">
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+
+<script src="js/doMove.js"></script>
+<script>
+    var oBtn = document.getElementById("bottom");
+    var oDiv = document.getElementsByClassName("div1");//console.log(oDiv[0].offsetWidth);
+    var timer = null;
+
+    var onOff = false;
+
+    for(var i=0;i<oDiv.length;i++){
+        oDiv[i].style.left = (100+10)*i+"px";
+    }
+
+    oBtn.onclick = function(){
+        var num = 0;
+        onOff = !onOff; console.log( onOff );
+        oBtn.value = onOff?"下落":"上升";
+        clearInterval( timer );
+        timer = setInterval(function(){
+            if( onOff){
+                xmt.doMove( oDiv[num] , "top" , 800 , 10 );console.log( oDiv[num] );
+            }else{
+                xmt.doMove( oDiv[num] , "top" , 50 , 10 );console.log( oDiv[num] );
+            }
+            num++;
+            if( num>=oDiv.length ){
+                num = oDiv.length;
+                clearInterval( timer );
+            }
+        },500);
+
+    };
+</script>
+</body>
+</html>
