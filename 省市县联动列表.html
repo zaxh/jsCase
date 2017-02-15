@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市县联动列表</title>
+    <style>
+        .wrap{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <select name="prov" id="prov">
+        <option value="0">请选择...</option>
+    </select>
+    <select name="city" id="city">
+        <option value="0">请选择...</option>
+    </select>
+    <select name="country" id="country">
+        <option value="0">请选择...</option>
+    </select>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/cityPicker.js"></script>
+<script>
+    /*** js实现省市县联动  *****/
+            /*
+    var oProv = document.getElementById("prov");
+    var oCity = document.getElementById("city");
+    var oCountry = document.getElementById("country");
+    var optionProv = oProv.getElementsByTagName("option");//console.log( optionProv );
+    var optionCity = oCity.getElementsByTagName("option");
+    var optionCountry = oCountry.getElementsByTagName("option");
+
+    for(var i=0;i<cityData.length;i++){
+        oProv.innerHTML += "<option value='"+ i+1 +"'>"+ cityData[i].name +"</option>";
+    }
+    oProv.onchange = function(){
+        var _index = oProv.selectedIndex - 1;
+        var _sub = cityData[_index].sub;
+        if( _index <0 ){
+
+        }else{
+            oCity.innerHTML = "<option value='0'>请选择...</option>";
+            oCountry.innerHTML = "<option value='0'>请选择...</option>";
+            for(var i=0;i<_sub.length;i++){
+                oCity.innerHTML += "<option value='"+ i+1 +"'>"+ _sub[i].name +"</option>";
+            }
+        }
+    };
+    oCity.onchange = function(){
+        var _indexParent = oProv.selectedIndex - 1;
+        var _index = oCity.selectedIndex - 1;
+        var _sub = cityData[_indexParent].sub[_index].sub;
+        if( _index <0 ){
+
+        }else{
+            oCountry.innerHTML = "<option value='0'>请选择...</option>";
+            for(var i=0;i<_sub.length;i++){
+                oCountry.innerHTML += "<option value='"+ i+1 +"'>"+ _sub[i].name +"</option>";
+            }
+        }
+    };
+*/
+    /***** jquery 省市县联动 ********/
+    var $Prov = $("#prov");
+    var $City = $("#city");
+    var $Country = $("#country");
+    var $optionProv = $Prov.children("option");//console.log( optionProv );
+    var $optionCity = $City.children("option");
+    var $optionCountry = $Country.children("option");
+
+    for(var i=0;i<cityData.length;i++){
+        $Prov.append("<option value='"+ i+1 +"'>"+ cityData[i].name +"</option>") ;
+    }
+    $Prov.change(function() {
+        var _index = $Prov.get(0).selectedIndex - 1;
+        var _sub = cityData[_index].sub;
+        if (_index < 0) {
+
+        } else {
+            $City.html("<option value='0'>请选择...</option>");
+            $Country.html("<option value='0'>请选择...</option>");
+            for (var i = 0; i < _sub.length; i++) {
+                $City.append("<option value='" + i + 1 + "'>" + _sub[i].name + "</option>");
+            }
+        }
+    });
+    $City.change(function(){
+        var _indexParent = $Prov.get(0).selectedIndex - 1;
+        var _index = $City.get(0).selectedIndex - 1;
+        var _sub = cityData[_indexParent].sub[_index].sub;
+        if( _index <0 ){
+
+        }else{
+            $Country.html("<option value='0'>请选择...</option>");
+            for(var i=0;i<_sub.length;i++){
+                $Country.append("<option value='"+ i+1 +"'>"+ _sub[i].name +"</option>");
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
