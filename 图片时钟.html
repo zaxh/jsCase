@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片时钟</title>
+    <style>
+        *{margin::0; padding:0;}
+        li{list-style:none;}
+        .wrap{
+            width: 950px;
+            height: 200px;
+            margin: 100px auto;
+        }
+        .wrap li{
+            position: relative;
+            float: left;
+            width: 50px;
+            height: 80px;
+        }
+        .wrap li img{
+            position: absolute;
+            left: 0;
+            width:  100%;
+            height: 80px;
+        }
+        .wrap li img:nth-of-type(1){
+            top: 0px;
+        }
+        .wrap li img:nth-of-type(2){
+            top: 80px;
+        }
+        .wrap li span{
+            display: inline-block;
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-size: 40px;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul class="wrap">
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><span>年</span></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><span>月</span></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><span>日</span></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><span>:</span></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><span>:</span></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+    <li><img src="img/img/0.jpg" alt=""><img src="img/img/0.jpg" alt=""></li>
+</ul>
+<script>
+    var oLi = document.getElementsByTagName("li");
+    var array_img = [];
+    for(var i=0;i<oLi.length;i++){
+        var oImg = oLi[i].getElementsByTagName("img")[0];
+        if(oImg){
+            array_img.push( oImg );
+        }
+    }
+    var oSpan = document.getElementsByTagName("span");
+    //setInterval(getTime,1000);
+    function getTime (){
+        var date = new Date();
+
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+
+        var str = year + toTwo( month ) + toTwo( day ) + toTwo( hour ) + toTwo( min ) + toTwo( sec );
+        var array = str.split("");
+
+        for(var i=0;i<array_img.length;i++){
+            array_img[i].src = "img/img/"+ parseInt(array[i]) +".jpg";
+        }
+    }
+    getTime();
+    function toTwo(n){
+        if(n<10){
+            return "0"+n;
+        }else{
+            return ""+n;
+        }
+    }
+</script>
+</body>
+</html>
