@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <style>
+        *,*:after,*:before{
+            margin:0;
+            padding:0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        li{list-style: none;}
+        em{font-style: normal;}
+        .wrap{
+            width: 1200px;
+            margin: 100px auto;
+        }
+        .wrap h2{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+        }
+        .wrap ul.goodList{
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-top: 2px solid #333;
+        }
+        .wrap ul.goodList li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height: 400px;
+            border-right: 2px solid #888;
+            background: #fff url("img/shelves.jpg") center;
+        }
+        .wrap ul.goodList li:nth-child(2){
+            left: 25%
+        }
+        .wrap ul.goodList li:nth-child(3){
+            left: 50%
+        }
+        .wrap ul.goodList li:nth-last-child(1){
+            border-right: 0;
+            left: 75%
+        }
+        .wrap .goodItem .container{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 400px;
+            padding: 15px 10px 0;
+            background: #fff;
+            z-index: 104;
+        }
+        .wrap .goodItem .countdown{
+            width: 100%;
+            height: 80px;
+        }
+        .wrap .goodItem .countdown .targetTime{
+            width: 74%;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 10px;
+        }
+        .wrap .goodItem .countdown .confirm{
+            width: 20%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #f00;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .wrap .goodItem .countdown .remainingDays{
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #d4d2d2;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 10px auto;
+        }
+        .wrap .goodItem .img-wrap{
+            width: 100%;
+            height: 220px;
+            text-align: center;
+            line-height: 220px;
+        }
+        .wrap .goodItem .img-wrap>img{
+            width: 95%;
+            height: 95%;
+        }
+        .wrap .goodItem .desc{
+            width: 100%;
+            height: 50px;
+            line-height: 16px;
+            font-size: 12px;
+            color: #606060;
+        }
+        .wrap .goodItem .snapUp{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: #c30c0c;
+            font-weight: bold;
+        }
+        .wrap .goodItem .snapUp .snapTitle{
+            color: #c1a3a3;
+        }
+        .wrap .priceList{
+            width: 100%;
+            margin: 50px auto 0;
+        }
+        .wrap .priceList .priceTitle{
+            width: 100%;
+            height: 40px;
+            background: #c188bf;
+        }
+        .wrap .priceList .priceTitle>div{
+            float: left;
+            width: 30%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: darkred;
+        }
+        .wrap .priceList .priceItem{
+            width: 100%;
+            height: 100px;
+            background: #c188bf;
+            margin-top: 20px;
+        }
+        .wrap .priceList .priceItem>div{
+            float: left;
+            width: 30%;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .wrap .priceList .priceItem>div.name{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .wrap .priceList .priceItem>div.img>img{
+            width: 30%;
+            height: 80%;
+            margin-top: 12px;
+        }
+        .wrap .total-wrap{
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .wrap .total-wrap i{
+            font-style: normal;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>限购时间</h2>
+        <ul class="goodList">
+            <li class="goodItem">
+                <div class="container" index="0">
+                    <div class="countdown">
+                        <input class="targetTime" type="text" value="February 21,2017 17:32:00" />
+                        <span class="confirm">确定</span>
+                        <p class="remainingDays"></p>
+                    </div>
+                    <div class="img-wrap">
+                        <img src="img/01.jpg" alt="">
+                    </div>
+                    <p class="desc">锤子 M1L（SM919）4GB+32GB 咖啡金 全金属边框 全网通 双卡双待 移动联通电信4G手机</p>
+                    <p class="snapUp">
+                        <span class="snapTitle"> 抢购价：</span>
+                        <span class="snapMoney">&yen;<em>168.00</em></span>
+                    </p>
+                </div>
+            </li>
+            <li class="goodItem">
+                <div class="container">
+                    <div class="countdown">
+                        <input class="targetTime" type="text" value="February 20,2017 17:32:00"  />
+                        <span class="confirm">确定</span>
+                        <p class="remainingDays"></p>
+                    </div>
+                    <div class="img-wrap">
+                        <img src="img/02.jpg" alt="">
+                    </div>
+                    <p class="desc">锤子 M1L（SM919）4GB+32GB 咖啡金 全金属边框 全网通 双卡双待 移动联通电信4G手机</p>
+                    <p class="snapUp">
+                        <span class="snapTitle"> 抢购价：</span>
+                        <span class="snapMoney">&yen;<em>566.00</em></span>
+                    </p>
+                </div>
+
+            </li>
+            <li class="goodItem">
+                <div class="container">
+                    <div class="countdown">
+                        <input class="targetTime" type="text"  value="February 20,2017 17:32:00" />
+                        <span class="confirm">确定</span>
+                        <p class="remainingDays"></p>
+                    </div>
+                    <div class="img-wrap">
+                        <img src="img/03.jpg" alt="">
+                    </div>
+                    <p class="desc">锤子 M1L（SM919）4GB+32GB 咖啡金 全金属边框 全网通 双卡双待 移动联通电信4G手机</p>
+                    <p class="snapUp">
+                        <span class="snapTitle"> 抢购价：</span>
+                        <span class="snapMoney">&yen;<em>3678.00</em></span>
+                    </p>
+                </div>
+            </li>
+            <li class="goodItem">
+                <div class="container">
+                    <div class="countdown">
+                        <input class="targetTime" type="text"  value="February 20,2017 17:32:00" />
+                        <span class="confirm">确定</span>
+                        <p class="remainingDays"></p>
+                    </div>
+                    <div class="img-wrap">
+                        <img src="img/04.jpg" alt="">
+                    </div>
+                    <p class="desc">锤子 M1L（SM919）4GB+32GB 咖啡金 全金属边框 全网通 双卡双待 移动联通电信4G手机</p>
+                    <p class="snapUp">
+                        <span class="snapTitle"> 抢购价：</span>
+                        <span class="snapMoney">&yen;<em>188.00</em></span>
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <ul class="priceList">
+            <li class="priceTitle">
+                <div class="name">商品名称</div>
+                <div class="price">价钱</div>
+            </li>
+            <!--<li class="priceItem">
+                <div class="name">锤子 M1L（SM919）4GB+32GB 咖啡金 全金属边框 全网通 双卡双待 移动联通电信4G手机</div>
+                <div class="price">168.00</div>
+                <div class="img"><img src="img/01.jpg" alt=""></div>
+            </li>-->
+        </ul>
+        <div class="total-wrap">总价：<i id="total">00.00</i>元</div>
+    </div>
+    <script src="doMove.js"></script>
+    <script>
+        var goodList = document.getElementsByClassName("goodList")[0];
+        var goodItem = goodList.getElementsByClassName("goodItem");
+        var jsonCount = {
+            divCon:[],
+            targetTime:[],
+            confirm:[],
+            remainingDays:[],
+            cons:[],
+            price:[],
+            img:[]
+        };
+        var priceList = document.getElementsByClassName("priceList")[0];
+        var priceItem,num=0;
+        var oI = document.getElementById("total");
+
+        //变量初始化
+        for(var i=0; i<goodItem.length;i++){
+            jsonCount.divCon.push( goodItem[i].getElementsByClassName("container")[0] );
+            jsonCount.targetTime.push( goodItem[i].getElementsByClassName("targetTime")[0] );
+            jsonCount.confirm.push( goodItem[i].getElementsByClassName("confirm")[0] );
+            jsonCount.remainingDays.push( goodItem[i].getElementsByClassName("remainingDays")[0] );
+            jsonCount.cons.push( goodItem[i].getElementsByClassName("desc")[0].innerHTML );
+            jsonCount.price.push( goodItem[i].getElementsByTagName("em")[0].innerHTML );
+            jsonCount.img.push( goodItem[i].getElementsByTagName("img")[0].src );
+        }
+        //点击确定
+        for(var j=0;j<jsonCount.targetTime.length;j++){
+            jsonCount.confirm[j].index = j;
+            jsonCount.confirm[j].onclick = function(){
+                var oDiv = jsonCount.divCon[this.index]; //获取当前div
+                var oP = jsonCount.remainingDays[this.index];
+                oDiv.index = this.index;   //设置div 的index 值，以便下面函数内部使用（解决function中this 指向问题）
+
+                if(!jsonCount.targetTime[this.index].value) alert("请输入截止日期");
+                var iNew = new Date( jsonCount.targetTime[this.index].value );
+
+                clearInterval(oDiv.timer);  //先清除定时器
+                oDiv.timer = setInterval(function(){
+                    var iNow = new Date();
+                    var t = Math.floor((iNew - iNow)/1000); //毫秒--秒
+                    oP.innerHTML = t<0?"剩余00天00时00分00秒":"剩余"+ toTwo( Math.floor(t/86400) ) +"天"+ toTwo( Math.floor(t%86400/3600) ) +"时"+ toTwo( Math.floor(t%86400%3600/60)) +"分"+ toTwo( t%60 ) +"秒";
+                    if(oP.innerHTML == "剩余00天00时00分00秒"){
+                        clearInterval(oDiv.timer);
+                         xmt.shake( jsonCount.divCon[oDiv.index] , "left" ,function(){
+                            xmt.doMove( jsonCount.divCon[oDiv.index] ,"top" , 200+num*100 , 10 , function(){
+                                xmt.fadeOut( jsonCount.divCon[oDiv.index] , function(){
+                                    goodItem[oDiv.index].removeChild( jsonCount.divCon[oDiv.index] );
+                                    priceList.innerHTML += '<li class="priceItem"><div class="name">'+ jsonCount.cons[oDiv.index] +'</div><div class="price">'+ jsonCount.price[oDiv.index] +'</div><div class="img"><img src="'+ jsonCount.img[oDiv.index] +'" alt=""></div></li>';
+                                    priceItem =  priceList.getElementsByClassName("priceItem")[num] ;
+                                    oI.innerHTML =  parseFloat( priceItem.getElementsByClassName("price")[0].innerHTML ) + parseFloat( oI.innerHTML );
+                                    num++;
+                                });
+                            });
+                        });
+                    }
+                },1000);
+            }
+        }
+
+
+        function toTwo(n){
+            return n<10?"0" + n:"" + n;
+        }
+    </script>
+</body>
+</html>
