@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查找、替换、删除</title>
+    <style>
+        .wrap{
+            width: 1200px;
+            height: 800px;
+            margin: 100px auto 0;
+            background: #ccc;
+        }
+        .wrap .container{
+            width: 100%;
+            overflow: hidden;
+        }
+        .wrap .input{
+            float: left;
+            width: 500px;
+            height: 400px;
+            margin: 0 100px;
+            padding-top: 50px;
+        }
+        .wrap .input p{
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            background: #fff;
+        }
+        .wrap .btn-wrap{
+            float: left;
+            width: 150px;
+            height: 300px;
+            font-size: 20px;
+            color: #ddd;
+            padding: 50px;
+        }
+        .wrap .btn-wrap .onOff{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #737373;
+            cursor: pointer;
+        }
+        .wrap .btn-wrap .edit{
+            display: none;
+            width: 100%;
+            height: 100px;
+        }
+        .wrap .btn-wrap .edit>a{
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #686868;
+            color: #fff;
+            text-decoration: none;
+        }
+        .wrap .btn-wrap .edit>a:hover{
+            background: orangered;
+        }
+        .wrap .operate{
+            display: none;
+            width: 800px;
+            height: 200px;
+            margin: 20px 100px;
+            border: 10px solid #FE5400;
+            background: #f7d79e;
+        }
+        .wrap .operate .header{
+            position: relative;
+            width: 600px;
+            height: 30px;
+            margin: 20px auto;
+            border-bottom: 2px solid orange;
+        }
+        .wrap .operate .header>span{
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+        }
+        .wrap .operate .header>span.active{
+            background: orangered;
+            color: #fff;
+        }
+        .wrap .operate .header>span:nth-child(3){
+            position: absolute;
+            top: 0;
+            right: -30px;
+            color: #000;
+        }
+        #search-wrap,#replace-wrap{
+            width: 600px;
+            height: 100px;
+            margin: 50px auto  0;
+        }
+        #replace-wrap{
+            display: none;
+        }
+        em{
+            font-style: normal;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="container">
+            <div class="input"><p  class="text">JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。
+在1995年时，由Netscape公司的Brendan Eich，在网景导航者浏览器上首次设计实现而成。因为Netscape与Sun合作，Netscape管理层希望它外观看起来像Java，因此取名为JavaScript。但实际上它的语法风格与Self及Scheme较为接近。[1]
+为了取得技术优势，微软推出了JScript，CEnvi推出ScriptEase，与JavaScript同样可在浏览器上运行。为了统一规格，因为JavaScript兼容于ECMA标准，因此也称为ECMAScript。
+            </p></div>
+            <div class="btn-wrap">
+                <div class="onOff">展开</div>
+                <div class="edit">
+                    <a href="#search-wrap" class="btn">查找</a>
+                    <a href="#replace-wrap" class="btn">替换</a>
+                </div>
+            </div>
+        </div>
+        <div class="operate">
+            <div class="header">
+                <span class="active">查找</span>
+                <span class="">替换</span>
+                <span class="">&Chi;</span>
+            </div>
+            <div id="search-wrap">
+                <input type="text" value="">
+                <input type="button" value="查找">
+            </div>
+            <div id="replace-wrap">
+                <input type="text" value="">
+                <input type="text" value="">
+                <input type="button" value="替换">
+            </div>
+        </div>
+    </div>
+    <script>
+        var oText = document.getElementsByClassName("text")[0];
+        var aOnOff = document.getElementsByClassName("onOff")[0];
+        var aEdit = document.getElementsByClassName("edit")[0];
+        var aSearch = aEdit.getElementsByClassName("btn")[0];
+        var aReplace = aEdit.getElementsByClassName("btn")[1];
+        var oOperate = document.getElementsByClassName("operate")[0];
+        var oHSearch = oOperate.getElementsByTagName("span")[0];
+        var oHReplace = oOperate.getElementsByTagName("span")[1];
+        var oHClose = oOperate.getElementsByTagName("span")[2];
+        var oSearch = document.getElementById("search-wrap");
+        var oReplace = document.getElementById("replace-wrap");
+        var sText = oSearch.getElementsByTagName("input")[0];
+        var sBtn = oSearch.getElementsByTagName("input")[1];
+        var rText = oReplace.getElementsByTagName("input")[0];
+        var rText2 = oReplace.getElementsByTagName("input")[1];
+        var rBtn = oReplace.getElementsByTagName("input")[2];
+        aOnOff.onOff = true;
+        //展开按钮点击事件
+        aOnOff.onclick = function(){
+            if( aOnOff.onOff ){
+                aEdit.style.display = "block";
+                aOnOff.innerHTML = "收缩";
+                aOnOff.onOff = false;
+            }else{
+                aEdit.style.display = "none";
+                aOnOff.innerHTML = "展开";
+                aOnOff.onOff = true;
+            }
+        };
+        //展开按钮上
+        //查找
+        aSearch.onclick = function(){
+            oOperate.style.display = "block";
+            oSearch.style.display = "block";
+            oReplace.style.display = "none";
+            oHSearch.className = "active";
+            oHReplace.className = "";
+        };
+        aReplace.onclick = function(){
+            oOperate.style.display = "block";
+            oSearch.style.display = "none";
+            oReplace.style.display = "block";
+            oHSearch.className = "";
+            oHReplace.className = "active";
+        };
+        //操作框中按钮事件
+        oHSearch.onclick = function(){
+            oOperate.style.display = "block";
+            oSearch.style.display = "block";
+            oReplace.style.display = "none";
+            oHSearch.className = "active";
+            oHReplace.className = "";
+        };
+        oHReplace.onclick = function(){
+            oOperate.style.display = "block";
+            oSearch.style.display = "none";
+            oReplace.style.display = "block";
+            oHSearch.className = "";
+            oHReplace.className = "active";
+        };
+        oHClose.onclick = function(){
+            oOperate.style.display = "none";
+        };
+        //查找文本
+        sBtn.onclick = function(){
+            if(sText.value ==""){
+                alert("请输入查找内容~~");
+            }else{
+                oText.innerHTML = oText.innerHTML.split(sText.value).join("<em>"+ sText.value +"</em>");
+            }
+        };
+        rBtn.onclick = function(){
+            if(rText.value ==""){
+                alert("请输入查找内容~~");
+            }else if(rText2.value == ""){
+                oText.innerHTML = oText.innerHTML.split(rText.value).join("<em>"+ rText.value +"</em>");
+            }else{
+                oText.innerHTML = oText.innerHTML.split(rText.value).join("<em>"+ rText2.value +"</em>");
+            }
+        }
+    </script>
+</body>
+</html>
