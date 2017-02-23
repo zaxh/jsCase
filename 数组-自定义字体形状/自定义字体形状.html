@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义字体形状</title>
+    <style>
+        *{margin:0; padding:0;}
+        .wrap{
+            width: 500px;
+            height: 600px;
+            margin: 100px auto 0;
+        }
+        .wrap .showArea{
+            width: 500px;
+            height: 300px;
+            border: 1px solid #000;
+            margin-bottom: 20px;
+        }
+        .wrap .inputArea{
+            width: 500px;
+            height: 200px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="showArea"></div>
+        <select name="" id="font">
+            <option value="0">请选择...</option>
+            <option value="1">气球字体</option>
+            <option value="2">色狼字体</option>
+            <option value="3">害羞字体</option>
+            <option value="4">复仇字体</option>
+        </select><br />
+        <textarea class="inputArea" name="" id="" cols="30" rows="10"></textarea><br />
+        <input id="btn" type="button" value="确定">
+    </div>
+    <script>
+        var oDiv = document.getElementsByClassName("showArea")[0];
+        var oSel = document.getElementById("font");
+        var oText = document.getElementsByClassName("inputArea")[0];
+        var oBtn = document.getElementById("btn");
+        var src = "img/balloon1.jpg";
+
+        oSel.onchange = function(){
+            switch ( oSel.selectedIndex ){
+                case 1 :
+                    src = "img/balloon1.jpg";break;
+                case 2 :
+                    src = "img/selang.jpg";break;
+                case 3 :
+                    src = "img/shy.jpg";break;
+                case 4 :
+                    src = "img/cruel.jpg";break;
+                default:
+                    src = "img/balloon1.jpg";break;
+            }
+            oBtn.onclick = function(){
+                oDiv.innerHTML = "";
+                var str = oText.value.split("");
+                for(var i=0;i<str.length;i++){
+                    if( oSel.selectedIndex == 1 ){
+                        oDiv.innerHTML += '<div style="float:left; width: 60px; height:60px; text-align:center; line-height:40px; color: #000; font-size: 18px; font-weight: bold; background: url('+ src +'); background-size:100% 100%;">'+str[i]+'</div>';
+                    }else{
+                        oDiv.innerHTML += '<div style="float:left; width: 60px; height:120px;"><div style=" width: 60px; height:35px; text-align:center; line-height:35px; color: #000; font-size: 18px; font-weight: bold;">'+str[i]+'</div><div style="width: 60px; height:60px; background: url('+ src +'); background-size:100% 100%;"></div></div>';
+                    }
+                }
+            }
+        };
+
+
+    </script>
+</body>
+</html>
