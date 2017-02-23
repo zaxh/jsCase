@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组方法-排序</title>
+    <style>
+        *{margin:0; padding:0;}
+        .wrap{
+            width: 1200px;
+            height:600px;
+            background: #ddd;
+            margin: 100px auto 0;
+        }
+        .wrap .header{
+            width: 100%;
+            height: 80px;
+            text-align: center;
+            line-height: 80px;
+        }
+        .wrap .header input{
+            margin: 0 20px;
+        }
+        .wrap .container{
+            width: 1000px;
+            height: 500px;
+            margin: 0 auto;
+            background: #fff;
+        }
+        .wrap .container li{
+            float: left;
+            list-style: none;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+        }
+        .wrap .container li>img{
+            display: block;
+            width: 200px;
+            height: 150px;
+        }
+        .wrap .container li>span{
+            display: block;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #00a1d6;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header"><input type="button" value="从小到大"><input type="button" value="打乱顺序"></div>
+        <ul class="container">
+            <li><img src="img/01.jpg" alt=""><span>1-温馨办公</span></li>
+            <li><img src="img/02.jpg" alt=""><span>2-游戏桌面</span></li>
+            <li><img src="img/03.jpg" alt=""><span>3-汽车摇滚</span></li>
+            <li><img src="img/04.jpg" alt=""><span>4-狭路相逢</span></li>
+            <li><img src="img/05.jpg" alt=""><span>5-棒球小子</span></li>
+            <li><img src="img/06.jpg" alt=""><span>6-球鞋运动</span></li>
+            <li><img src="img/07.jpg" alt=""><span>7-游戏官网</span></li>
+            <li><img src="img/08.jpg" alt=""><span>8-指尖区间</span></li>
+        </ul>
+    </div>
+    <script>
+        var oBtn1 = document.getElementsByTagName("input")[0];
+        var oBtn2 = document.getElementsByTagName("input")[1];
+        var oUl = document.getElementsByTagName("ul")[0];
+        var oLi = document.getElementsByTagName("li");
+        var arrayNum = [],arraySpan = [];
+        var onOff = true;
+        for(var i=0;i<oLi.length;i++){
+            arrayNum.push( parseInt( oLi[i].getElementsByTagName("span")[0].innerHTML ) );
+            arraySpan.push(oLi[i].getElementsByTagName("span")[0].innerHTML);
+        }
+
+
+        oBtn1.onclick = function(){
+            oUl.innerHTML ="";
+            if( onOff ){
+                this.value = "从大到小";
+                arrayNum.sort(function(a,b){
+                    return a-b;
+                });
+                onOff = false;
+            }else{
+                this.value = "从小到大";
+                arrayNum.sort(function(a,b){
+                    return b-a;
+                });
+                onOff = true;
+            }
+            for(var i=0;i<arrayNum.length;i++){
+                oUl.innerHTML += '<li><img src="img/0'+ arrayNum[i] +'.jpg" alt=""><span>'+ arraySpan[arrayNum[i]-1] +'</span></li>';
+            }
+        };
+        oBtn2.onclick = function(){
+            oUl.innerHTML ="";
+            arrayNum.sort(function(){
+                return Math.random()-0.5;
+            });
+            for(var i=0;i<arrayNum.length;i++){
+                oUl.innerHTML += '<li><img src="img/0'+ arrayNum[i] +'.jpg" alt=""><span>'+ arraySpan[arrayNum[i]-1] +'</span></li>';
+            }
+        }
+    </script>
+</body>
+</html>
