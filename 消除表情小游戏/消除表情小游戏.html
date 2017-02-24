@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>qq掉表情大法</title>
+    <style>
+        *{margin:0; padding:0;}
+        .wrap{
+            width: 1200px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        .wrap h1{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .wrap h2{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-weight: normal;
+        }
+        .wrap .btn{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .wrap .container{
+            width: 100%;
+            height: 400px;
+        }
+        .wrap .container .score{
+            float: left;
+            width: 150px;
+            height: 150px;
+            background: #d6d64c;
+            border: 1px solid #000;
+        }
+        .wrap .container .score p{
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        #game{
+            position: relative;
+            float: left;
+            width: 1046px;
+            height: 398px;
+            border: 1px solid #000;
+        }
+        .icon{
+            position: absolute;
+            top: 0;
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>你的鼠标有多快？</h1>
+        <h2>游戏说明：点击“开始游戏”，随机掉下QQ表情，点中它，千万别让它掉下去！！</h2>
+        <div class="btn">
+            <input id="start" type="button" value="开始游戏">
+        </div>
+        <div class="container">
+            <div class="score">
+                <p>得分：<span>0</span>分</p>
+                <p>失分：<span>0</span>分</p>
+            </div>
+            <div id="game"></div>
+        </div>
+    </div>
+    <script src="doMove.js"></script>
+    <script>
+        var oStart = document.getElementById("start");
+        var oScore = document.getElementsByTagName("span")[0];
+        var oDeduction = document.getElementsByTagName("span")[1];
+        var oGame = document.getElementById("game");
+        var num = 0,speed = 1,time = 50,timer = null;
+
+
+        oStart.onclick = function(){
+            this.value = "游戏中...";
+            this.disabled = true;
+            game();
+        };
+        function game(){
+            var left = Math.round( Math.random()*800+100 );
+            var oDiv = document.createElement("div");
+            oDiv.style.background = "url(img/"+ parseInt( num+1 ) +".png)";
+            oDiv.style.left = left + "px";
+            oDiv.className = "icon";
+            oGame.innerHTML = "";
+            oGame.appendChild( oDiv );
+            xmt.doMove( oDiv , "top" , 370 , speed , 50 , function(){
+                oGame.removeChild( oDiv );
+                xmt.shake( oGame , "marginTop" , function(){
+                    oDeduction.innerHTML = parseInt( oDeduction.innerHTML ) + 1;
+                    if( parseInt(oDeduction.innerHTML) >=10 ){
+                        alert("很遗憾，你失败了==！");
+                        init();
+                    }else{
+                        num++;
+                        num%=11;
+                        speed = speed >=10?10:speed+1;
+                        game();
+                    }
+                });
+            });
+            oDiv.onclick = function(){
+                oDiv.style.background = "url(img/qq.png)";
+                xmt.shake( this , "left" , function(){
+                    oGame.removeChild( oDiv );
+                    oScore.innerHTML = parseInt( oScore.innerHTML ) + 1;
+                    if( parseInt(oScore.innerHTML) >=10 ){
+                        alert("恭喜你成为史上手速最快第一人~~");
+                        init();
+                    }else{
+                        num++;
+                        num%=11;
+                        speed = speed >=10?10:speed+1;
+                        game();
+                    }
+                });
+            };
+        }
+
+        function init(){
+            oStart.value = "开始游戏";
+            oStart.disabled = false;
+            oDeduction.innerHTML = 0;
+            oScore.innerHTML = 0;
+        }
+    </script>
+</body>
+</html>
