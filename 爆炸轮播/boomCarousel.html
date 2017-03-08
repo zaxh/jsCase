@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爆炸轮播</title>
+    <style>
+        *{margin:0;padding:0;}
+        body,html{
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload = function(){
+        boomCarousel.init();
+    };
+    var boomCarousel = {
+
+        init: function(){
+            var oDiv = document.createElement("div");
+                oDiv.id = "box";
+                oDiv.style.cssText = "position:relative;width:400px;height:600px;margin:100px auto 0;background:url(img/con1big.png) no-repeat;background-size:cover;";
+                document.body.appendChild(oDiv);
+            /*for(var i=0;i<2;i++){
+                var oP = document.createElement("p");
+                    oP.index = i;
+                    oP.style.cssText = "position:absolute;top:0;bottom:0;margin:auto;width:50px;height:50px;cursor:pointer;text-align:center;line-height:50px;font-size:26px;color:#fff;background:rgba(0,0,0,.6);";
+                    oP.onmouseenter = function(){
+                        this.style.backgroundColor = "rgba(0,0,0,.9)";
+                    };
+                    oP.onmouseleave = function(){
+                        this.style.backgroundColor = "rgba(0,0,0,.6)";
+                    };
+                    oDiv.appendChild(oP);
+                switch (oP.index){
+                    case 0:
+                        oP.id = "prev";
+                        oP.style.left = "-60px";
+                        oP.innerHTML = "&lt;";
+                        break;
+                    case 1:
+                        oP.id = "next";
+                        oP.style.right = "-60px";
+                        oP.innerHTML = "&gt;";
+                        break;
+                }
+            }*/
+            for(var j=0;j<10;j++){        //行
+                for(var k=0;k<10;k++){    //列
+                    var oSpan=document.createElement('span');
+                    oSpan.className = "smallPic";
+                    oSpan.style.cssText = "position:absolute;top:0;left:0;width:40px;height:60px;background:url(img/con0big.png);transform:rotateY(0deg);";
+                    /*oSpan.style.left=j*oDiv.offsetWidth/10+'px';
+                    oSpan.style.top=k*oDiv.offsetHeight/10+'px';*/
+                    oDiv.appendChild(oSpan);
+                    oSpan.style.top =  j*oSpan.offsetHeight +"px";
+                    oSpan.style.left = k*oSpan.offsetWidth +"px";
+                    oSpan.style.backgroundPosition=-oSpan.offsetLeft+'px -'+oSpan.offsetTop+'px';
+                }
+            }
+            this.auto();
+        },
+        auto: function(){
+            var oDiv = document.getElementById("box");
+            var oSpans = this.getClass( "smallPic" , oDiv);
+            var num = 0;
+
+            clearInterval( this.timer );
+
+            this.timer = setInterval(function(){
+
+                for(var i=0;i<oSpans.length;i++){
+                    oSpans[i].style.transition = "all .4s ease";
+                    //var x = oSpans[i].offsetWidth + oSpans[i].offsetLeft - oDiv.clientWidth;
+                    //var y = oSpans[i].offsetHeight + oSpans[i].offsetTop - oDiv.clientHeight;
+                    oSpans[i].style.transform = "perspective(800px) translateX("+ boomCarousel.rnd(200,-200) +"px) translateY("+ boomCarousel.rnd(400,-400) +"px) rotateX("+ boomCarousel.rnd(0,180) +"deg) rotateY("+ boomCarousel.rnd(0,180) +"deg) scale("+ boomCarousel.rnd(2,5) +")";
+                    oSpans[i].style.opacity='0';
+                }
+                oSpans[0].addEventListener("transitionend",function(){
+                    for(var i=0;i<oSpans.length;i++){
+                        oSpans[i].style.transition = "none";
+                        oSpans[i].style.transform = "perspective(800px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(0deg) scale(1)";
+                        oSpans[i].style.backgroundImage = "url(img/con"+ num%12 +"big.png)";
+                        oSpans[i].style.opacity='1';
+                    }
+                    oDiv.style.backgroundImage = "url(img/con"+ parseInt( (num+1)%12 ) +"big.png)";
+                },false);
+                num++;
+
+            },2000);
+        },
+        rnd: function (m,n){
+            return parseInt(Math.random()*(n-m)+m);
+        },
+        getClass: function(cName , parent){
+            parent = parent || document;
+            if(document.getElementsByClassName){
+                return parent.getElementsByClassName(cName);
+            }else{
+                var all = parent.getElementsByTagName("*");
+                for(var i=0;i<all.length;i++){
+                    var arrClass = all[i].className;
+                    var arr = [];
+                    for(var j=0;j<arrClass.length;j++){
+                        if(arrClass[j] == cName){
+                            arr.push(all[i]);
+                            break;
+                        }
+                    }
+                }
+                return arr;
+            }
+
+        }
+
+
+    };
+</script>
+</body>
+</html>
