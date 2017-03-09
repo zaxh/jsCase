@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <style>
+        *{margin:0;padding:0;}
+        #wrap{position:relative;margin:0 auto;}
+       .box{float:left;padding:15px 0 0 15px;}
+       .img-wrap{border-radius:5px;}
+        img{width:165px;height:auto;}
+    </style>
+    <script src="jsonData.js"></script>
+    <script>
+        window.onload = function(){
+            var oWrap = document.getElementById("wrap");
+            waterFall(oWrap);
+            window.onscroll = function(){
+                if(checkSlideScroll()){
+                    for(var i=0;i<dataImg.data.length;i++){
+                        var oBox = document.createElement("div");
+                        oBox.className = "box";
+                        oWrap.appendChild(oBox);
+                        var imgWrap = document.createElement("div");
+                        imgWrap.className = "img-wrap";
+                        oBox.appendChild(imgWrap);
+                        var oImg = new Image();
+                        oImg.src = dataImg.data[i].src;
+                        imgWrap.appendChild(oImg);
+                    }
+                    waterFall(oWrap);
+                }
+            }
+        };
+        function waterFall(oWrap){
+            var oBoxs = getClass("box",oWrap); console.log(oBoxs[1].offsetHeight);
+            var winW = document.body.clientWidth || document.documentElement.clientWidth;
+            var cols = Math.floor( winW/oBoxs[0].offsetWidth );
+            oWrap.style.width = cols*oBoxs[0].offsetWidth + "px";
+            var arrH = [];
+            for(var i=0;i<oBoxs.length;i++){
+                if(i<cols){
+                    arrH.push(oBoxs[i].offsetHeight);
+                }else{
+                    var minH = Math.min.apply(null,arrH);
+                    var index = getMinIndex(arrH , minH);
+                    oBoxs[i].style.cssText = "position:absolute;top:"+ minH +"px;left:"+ oBoxs[index].offsetLeft +"px;";
+                    arrH[index] += oBoxs[i].offsetHeight;
+                }
+            }console.log( arrH );
+
+        };
+        function getClass(cName,parent){
+            parent = parent || document;
+            if(document.getElementsByClassName){
+                return parent.getElementsByClassName(cName);
+            }else{
+                var all = parent.getElementsByTagName("*");
+                for(var i=0;i<all.length;i++){
+                    var arrClass = all[i].className.split(" ");
+                    var arr = [];
+                    for(var j=0;j<arrClass.length;j++){
+                        if(arrClass[j] == cName){
+                            arr.push(all[i]);
+                            break;
+                        }
+                    }
+                }
+                return arr;
+            }
+        }
+        function getMinIndex(arrH , minH){
+            for(var i=0;i<arrH.length;i++){
+                if(arrH[i] == minH){
+                    return i;
+                }
+            }
+        }
+        function checkSlideScroll(){
+            var oWrap = document.getElementById("wrap");
+            var oBoxs = getClass("box",oWrap);
+            var _top = Math.floor(oBoxs[oBoxs.length-1].offsetTop) + Math.floor(oBoxs[oBoxs.length-1].offsetHeight/2);
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var winH = document.body.clientHeight || document.documentElement.clientHeight;
+            return _top<winScroll+winH?true:false;
+        }
+    </script>
+</head>
+<body>
+<div id="wrap">
+    <div class="box">
+        <div class="img-wrap"><img src="img/con0.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con1.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con2.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con3.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con4.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con5.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con6.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con7.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con8.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con9.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con10.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con11.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con0.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con1.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con2.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con3.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con4.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con5.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con6.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con7.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con8.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con9.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con10.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con11.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con0.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con1.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con2.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con3.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con4.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con5.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con6.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con7.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con8.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con9.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con10.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con11.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con0.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con1.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con2.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con3.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con4.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con5.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con6.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con7.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con8.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con9.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con10.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con11.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con0.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con1.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con2.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con3.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con4.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con5.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con6.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con7.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con8.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con9.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con10.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con11.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con0.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con1.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con2.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con3.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con4.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con5.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con6.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con7.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con8.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con9.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con10.jpg" alt=""></div>
+    </div>
+    <div class="box">
+        <div class="img-wrap"><img src="img/con11.jpg" alt=""></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <style>
+        *{margin:0;padding:0;}
+        #wrap{
+            width: 1200px;
+            margin: 0 auto;
+        }
+        #wrap .box{
+            float: left;
+            padding: 15px 0 0 15px;
+        }
+        img{
+            width: 150px;
+            height: auto;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            waterFall();
+            var dataImg = {"data":[{"src":"img/con0.jpg"},{"src":"img/con1.jpg"},{"src":"img/con2.jpg"},{"src":"img/con3.jpg"},{"src":"img/con4.jpg"},{"src":"img/con5.jpg"},{"src":"img/con6.jpg"},{"src":"img/con7.jpg"},{"src":"img/con8.jpg"},{"src":"img/con9.jpg"}]};
+            window.onscroll = function(){
+                if(checkSlideScroll()){
+                    for(var i=0;i<dataImg.data.length;i++){
+                        var oWrap = document.getElementById("wrap");
+                        var oBox = document.createElement("div");
+                        oBox.className = "box";
+                        oWrap.appendChild(oBox);
+                        var oDiv = document.createElement("div");
+                        oDiv.className = "img-wrap";
+                        oBox.appendChild(oDiv);
+                        var oImg = new Image();
+                        oImg.src = dataImg.data[i].src;
+                        oDiv.appendChild(oImg);
+                    }
+                }
+                waterFall();
+            }
+        };
+        function waterFall(){
+            var oWrap = document.getElementById("wrap");
+            var oBoxs = getClass("box",oWrap);
+            var cols =  Math.floor( oWrap.clientWidth / oBoxs[0].offsetWidth );   //获取第一行多少列
+            var arrH = [];
+            for(var i=0;i<oBoxs.length;i++){
+                if(i<cols){
+                    arrH.push(oBoxs[i].offsetHeight);
+                }else{
+                    var minH = Math.min.apply(null , arrH);
+                    var index = getIndex(arrH , minH);
+                    oBoxs[i].style.cssText = "position:absolute;top:"+ minH +"px;left:"+ oBoxs[index].offsetLeft +"px;";
+                    arrH[index] += oBoxs[i].offsetHeight;
+                }
+
+            }
+        }
+        //根据className 获取元素
+        function getClass(cName , parent){
+            parent = parent || document;
+            if(document.getElementsByClassName){
+                return parent.getElementsByClassName( cName );
+            }else{
+                var all = parent.getElementsByTagName("*");
+                for(var i=0;i<all.length;i++){
+                    var arrClass = all[i].className.split(" ");
+                    var arr = [];
+                    for(var j=0;j<arrClass.length;j++){
+                        if(arrClass[j] == cName){
+                            arr.push(all[i]);
+                            break;
+                        }
+                    }
+                }
+                return arr;
+            }
+        }
+        //获取高度最小值的的元素的索引
+        function getIndex(arrH , minH){
+            for(var i in arrH){
+                if(arrH[i] == minH){
+                    return i;
+                }
+            }
+        }
+        //拖动滚动条时，检查滚动位置是否需要加载图片
+        function checkSlideScroll(){
+            var oWrap = document.getElementById("wrap");
+            var oBoxs = getClass("box",oWrap);
+            var _top = oBoxs[oBoxs.length-1].offsetTop + oBoxs[oBoxs.length-1].offsetHeight/2;
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            var bodyH = document.body.clientHeight || document.documentElement.clientHeight;
+            return _top<(scrollTop + bodyH) ? true:false;
+        }
+
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div class="box">
+            <div class="img-wrap"><img src="img/con0.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con1.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con2.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con3.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con4.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con5.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con6.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con7.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con8.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con9.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con10.jpg" alt=""></div>
+        </div>
+        <div class="box">
+            <div class="img-wrap"><img src="img/con11.jpg" alt=""></div>
+        </div>
+    </div>
+</body>
+</html>
